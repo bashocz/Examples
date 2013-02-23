@@ -1,0 +1,35 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Class="Basho.LoginWindow"
+    Title="Přihlášení" Height="218" Width="300" mc:Ignorable="d" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowInTaskbar="False">
+    <Grid>
+    	<Grid.Background>
+    		<LinearGradientBrush EndPoint="1,1" StartPoint="0,0" MappingMode="RelativeToBoundingBox">
+    			<GradientStop Color="#FF8D8DFF" Offset="0"/>
+    			<GradientStop Color="#FF29298A" Offset="1"/>
+    		</LinearGradientBrush>
+    	</Grid.Background>
+        
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="24"/>
+    		<RowDefinition Height="16"/>
+    		<RowDefinition Height="32"/>
+    		<RowDefinition Height="16"/>
+    		<RowDefinition Height="32"/>
+    		<RowDefinition Height="0.427*"/>
+    	</Grid.RowDefinitions>
+    	<Grid.ColumnDefinitions>
+    		<ColumnDefinition Width="24"/>
+    		<ColumnDefinition/>
+    		<ColumnDefinition Width="24"/>
+    	</Grid.ColumnDefinitions>
+    	<TextBlock HorizontalAlignment="Left" Margin="0" Grid.Column="1" Grid.Row="1" Text="Uživatel" TextWrapping="Wrap" d:LayoutOverrides="Height"/>
+    	<TextBox x:Name="txtName" Margin="0,0,0,10" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" d:LayoutOverrides="Height"/>
+    	<TextBlock HorizontalAlignment="Left" Margin="0" RenderTransformOrigin="0.079,0.125" Grid.Column="1" Grid.Row="3" Text="Heslo" TextWrapping="Wrap" d:LayoutOverrides="Height"/>
+    	<PasswordBox x:Name="txtPassword" Margin="0,0,0,10" VerticalAlignment="Top" RenderTransformOrigin="4.4,6.111" Grid.Column="1" Grid.Row="4"/>
+    	<Button x:Name="btnOk" HorizontalAlignment="Left" Margin="32,16,0,0" VerticalAlignment="Top" Width="75" Content="Ok" Grid.Column="1" Grid.Row="5" IsDefault="True"/>
+    	<Button x:Name="btnCancel" HorizontalAlignment="Right" Margin="0,16,32,0" VerticalAlignment="Top" Width="75" Content="Storno" Grid.Column="1" Grid.Row="5" IsCancel="True"/>
+        
+    </Grid>
+</Window>
