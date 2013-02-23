@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="IPDetection.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+    d:DesignHeight="300" d:DesignWidth="400">
+
+    <StackPanel x:Name="LayoutRoot" Background="White">
+        <TextBlock Text="{Binding IpAddress}"/>
+        <TextBlock Text="{Binding ControlIpAddress}"/>
+        <TextBlock Text="{Binding IsController}"/>
+        <Button Content="Volej service" Command="{Binding Command}"/>
+    </StackPanel>
+</UserControl>

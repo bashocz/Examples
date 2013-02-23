@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fb313715-4e80-4cdc-835c-9a7df66e5342" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://ei-psc-test.ad.onsemi.com/IpDetection/IpDetectionService.svc/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="d1eefacd-6255-4fb9-969e-476fa1a7eb57" SourceId="1" SourceUrl="net.tcp://ei-psc-test.ad.onsemi.com/IpDetection/IpDetectionService.svc/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="71e6daeb-79c6-4154-a0f7-0830cef69869" SourceId="1" SourceUrl="net.tcp://ei-psc-test.ad.onsemi.com/IpDetection/IpDetectionService.svc/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="5970e96d-d8e4-4895-88ce-e17e2a97fdcd" SourceId="1" SourceUrl="net.tcp://ei-psc-test.ad.onsemi.com/IpDetection/IpDetectionService.svc/mex" />
+    <MetadataFile FileName="WcfIPDetectionService1.xsd" MetadataType="Schema" ID="9aed1525-7510-4191-9549-6e2eb1707532" SourceId="1" SourceUrl="net.tcp://ei-psc-test.ad.onsemi.com/IpDetection/IpDetectionService.svc/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

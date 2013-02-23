@@ -1,0 +1,18 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IIpDetectionService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://ei-psc-test.ad.onsemi.com/IpDetection/IpDetectionService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IIpDetectionService"
+                contract="IpDetectionServiceReference.IIpDetectionService"
+                name="BasicHttpBinding_IIpDetectionService" />
+        </client>
+    </system.serviceModel>
+</configuration>

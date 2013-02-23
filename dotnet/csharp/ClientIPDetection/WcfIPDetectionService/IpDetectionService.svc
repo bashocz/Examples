@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="WcfIPDetectionService.IpDetectionService" CodeBehind="IpDetectionService.svc.cs" %>
