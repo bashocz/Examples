@@ -1,0 +1,27 @@
+﻿<Window x:Class="ImageSegmentation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="556" Width="769"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button Content="Otevrit" Command="{Binding OpenImageCommand}"/>
+            <Button Content="C++ Segmentovat" Command="{Binding SegmentCppImageCommand}"/>
+            <Button Content="C++ Gaussian" Command="{Binding GaussianCppImageCommand}"/>
+            <Button Content="C# Segmentovat" Command="{Binding SegmentImageCommand}"/>
+            <Button Content="C# Gaussian" Command="{Binding GaussinaImageCommand}"/>
+        </StackPanel>
+
+        <Image Grid.Row="1" Source="{Binding OriginImage.Image}" StretchDirection="DownOnly" />
+        <Image Grid.Row="1" Grid.Column="1" Source="{Binding SegmentedImage.Image}" StretchDirection="DownOnly" />
+    </Grid>
+</Window>
