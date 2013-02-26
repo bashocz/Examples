@@ -1,0 +1,52 @@
+print "<Konstanty>";
+print "10: ",10;
+print " 1.25: ", 1.25;
+print "";;
+
+print "<Promenne>";
+String s;
+s="Abcd";
+print "s(Abcd): ", s;
+
+float d;
+d=3.14159e2;
+print "d(3.14159e2): ", d;
+
+int n;
+n=-500;
+print "n(-500): ", n;
+print "";
+
+boolean k;
+k=True;
+print "k(True): ",k;
+print "";
+
+print "<Vyrazy>";
+print "2+3*5(17): ",2+3*5;
+print "17 / 3(5): ", 17 / 3;
+print "17 mod 3(2): ", 17 % 3;
+print "2.5*2.5/6.25(1.0): ", 2.5*2.5/6.25;
+print "1.5*3(4.5): ", 1.5*3;
+print "abc+def (abcdef): ", "abc"."def";
+print "";
+
+print  "<Poznamky>"; // Poznamka
+// print  "Taky poznamka";
+
+print "<Kompatibilita>";
+float y;
+y= 10;
+print "y (10.0): ", y;
+
+print "<Vstup dat - a,b#,c$>";
+int a;
+float b;
+String c;
+boolean e;
+a = 0;
+b = 0.0;
+c = "";
+e = True;
+read a,b,c,e;
+print "a,b,c,e: ", a, ",", b, ",", c, ",",e;

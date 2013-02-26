@@ -1,0 +1,1091 @@
+/* volby generátoru */
+options{
+  IGNORE_CASE = false;
+  DEBUG_PARSER = false;
+}
+
+/* tøída analyzátoru */
+PARSER_BEGIN(InterpretacniPrekladac)
+
+import java.io.*;
+import java.util.*;
+public class InterpretacniPrekladac {
+  static HashMap seznamPromenych = new HashMap();
+  static ArrayList<String>zasobnik = new ArrayList<String>();
+  
+  /**
+    * Hlavni spousteci trida cele aplikace
+    * @author Tes122    &     BAR118
+    * @param args - argument prikazove radky, zadava se zde nazev souboru
+    * @exception ParseException - vyjmky parseru JavaCC
+    */
+  public static void main(String args[]) throws ParseException {
+    try {
+  	  InterpretacniPrekladac parser = new InterpretacniPrekladac(new java.io.FileInputStream(args[0]));
+      parser.start();
+    }
+    catch (FileNotFoundException e) {
+      System.out.println("Zadejte do parametru spravne jmeno vstupniho souboru!" + e.getMessage());
+      System.exit(1);
+    }
+    catch (ParseException e) {
+      Token poziceChyby = e.currentToken;
+      int expected[][] = e.expectedTokenSequences;
+
+			System.err.println("Chyba syntaxe na radku " + poziceChyby.beginLine + " a sloupci " + poziceChyby.beginColumn + "!");
+      System.exit(1);
+    }
+    catch (TokenMgrError e) {
+ 			System.err.println("Nezname klicove slovo ve zdrojovem kodu!");
+ 			System.exit(1);
+ 		}
+ 		catch (Exception e) {
+      System.out.println("Zadejte do parametru spravne jmeno vstupniho souboru!" + e.getMessage());
+      System.exit(1);
+    }
+  }
+}
+
+/**
+  * Objekt, ktery bude slouzit pro ukladani informaci o promennych
+  */
+class Promenna {
+  private String nazevPromenne=null;
+  private String datovyTypPromenne=null;
+  private String hodnotaPromenne=null;
+  
+  /**
+    * Konstruktor
+    * @param nazevPromenne - nazev promenne
+    * @param datovyTypPromenne - datovy typ promenne
+    * @param hodnotaPromenne - hodnota promenne         
+    */  
+  Promenna(String nazevPromenne, String datovyTypPromenne, String hodnotaPromenne) {
+    this.nazevPromenne=nazevPromenne;
+    this.datovyTypPromenne=datovyTypPromenne;
+
+   	if(hodnotaPromenne==null) {
+      if(datovyTypPromenne.compareTo("String") == 0){
+        this.hodnotaPromenne="";
+      }
+      else if(datovyTypPromenne.compareTo("int") == 0){
+        this.hodnotaPromenne="0";
+      }
+      else if(datovyTypPromenne.compareTo("float") == 0){
+        this.hodnotaPromenne="0.0";
+      }
+      else if(datovyTypPromenne.compareTo("boolean") == 0){
+        this.hodnotaPromenne="false";
+      }   
+    }
+    else {
+      this.hodnotaPromenne=hodnotaPromenne;
+    }
+  }
+
+  /**
+    * Metoda pro ulozeni hodnoty promene
+    * @param hodnotaPromenne - hodnota promenne
+    */
+  public void setHodnotaPromenne(String hodnotaPromenne) { this.hodnotaPromenne=hodnotaPromenne; }
+  /**
+    * Metoda pro ulozeni datoveho typu promene
+    * @param datovyTypPromenne - datovy typ promenne
+    */
+  public void setTypPromenne(String datovyTypPromenne) { this.datovyTypPromenne=datovyTypPromenne; }
+  /**
+    * Metoda pro ulozeni nazvu promene
+    * @param nazevPromenne - nazev promenne
+    */
+  public void setNazevPromenne(String nazevPromenne) { this.nazevPromenne=nazevPromenne; }
+  
+  /**
+    * Metoda pro nacteni hodnoty promene
+    * @return hodnotaPromenne - hodnota promenne
+    */
+  public String getHodnotaPromenne() { return this.hodnotaPromenne; }
+  /**
+    * Metoda pro nacteni datoveho typu promene
+    * @return datovyTypPromenne - datovy typ promenne
+    */
+  public String getTypPromenne() { return this.datovyTypPromenne; }
+  /**
+    * Metoda pro nacteni nazvu promene
+    * @return nazevPromenne - nazev promenne
+    */   
+  public String getNazevPromenne() { return this.nazevPromenne; }
+}
+
+PARSER_END(InterpretacniPrekladac)
+ 
+/* lexikální analyzátor */
+//Tyto znaky se preskoci
+SKIP:{
+	" " |
+	"\r" |
+	"\t" |
+	"\n" |
+	<"//" (~["\n", "\r"])* ("\n" | "\r" | "\r\n")>
+}
+//Interpunkcni symboly
+TOKEN:{
+	< STREDNIK: ";"> |
+	< DVOJTECKA: ":"> |
+	< CARKA: ","> |
+	< TECKA: ".">
+}
+//klicova slova
+TOKEN:{
+	< READ: "read"> |
+	< PRINT: "print">
+}
+//Operatory
+TOKEN:{
+	< PLUS: "+" > | 
+	< MINUS: "-" > |
+	< KRAT: "*" > | 
+	< DELENO: "/" > | 
+	< MOD: "%" > |
+	< AND: "&&" > |
+	< OR: "||" > |
+	< MENSI: "<" > |
+	< MENSIROVNO: "<=" > |
+	< VETSI: ">" > |
+	< VETSIROVNO: ">=" > |
+	< ROVNO: "==" > |
+	< NEROVNO: "!=" >
+}
+//Datove typy
+TOKEN:{
+	< INTEGER: "int"> |
+	< REAL: "float"> |
+	< STRING: "String"> |
+	< BOOLEAN: "boolean"> 
+}
+//Identifikátory
+TOKEN:{
+	< IDENTIFIKATOR: (["a"-"z"])(["a"-"z"] | ["0"-"9"])*> |
+	< HODNOTA_INT: (["0"-"9"])+> |
+	< HODNOTA_FLOAT: ((["0"-"9"])+"."(["0"-"9"])+)("e"("-""+")*(["0"-"9"])+)*> |
+	< HODNOTA_STRING: "\""(~["\"", "\\", "\n", "\r"])*"\""> |
+	< HODNOTA_BOOLEAN: ("true" | "false" | "True" | "False")>
+}
+
+
+
+/**
+  * Spousteci metoda
+  * Musi byt alespon jeden radek  
+  */
+void start(): {} {
+  RadekKodu() (RadekKodu())*
+}
+/**
+  * Definice radku kodu
+  * Musi obsahovat deklaraci nebo definici nebo cteni nebo zapis a konci strednikem
+  */
+void RadekKodu() : { } {
+    Deklarace() | Definice() | Print() | Read() | < STREDNIK >
+}
+
+/**
+  * Deklarace promenne
+  * Musi obsahovat datovy typ a alespon jeden identifikator
+  */
+void Deklarace():{
+  Token t;
+  String datovyTypPromenne;
+}
+{
+  datovyTypPromenne = DatovyTyp(){}
+  t = <IDENTIFIKATOR>{
+    seznamPromenych.put(t.toString(), new Promenna(t.toString(), datovyTypPromenne, null)); 
+  }
+  (<CARKA> t = <IDENTIFIKATOR>{
+    seznamPromenych.put(t.toString(), new Promenna(t.toString(), datovyTypPromenne, null));
+  })*
+}
+/**
+  * Datove typy
+  *
+String DatovyTyp():{
+  Token t;
+}
+{
+ (t = <INTEGER> |
+	t = <REAL> |
+	t = <STRING> |
+	t = <BOOLEAN>){
+  return t.toString();
+  }
+}
+
+/**
+  * Definice promennych
+  */
+Promenna Definice():{
+  Token t;
+  Promenna leva, prava;
+}
+{
+  leva = TestPromenne()"="{}(prava = Operace0(){
+    //Pokud mame stejne datove typy
+    if ((leva.getTypPromenne().compareTo(prava.getTypPromenne()) == 0)){
+      leva.setHodnotaPromenne(prava.getHodnotaPromenne());
+      return leva;
+    }
+    //Pretpovani z intu do floatu
+    else if (((leva.getTypPromenne().compareTo("float") == 0) && (prava.getTypPromenne().compareTo("int") == 0))){
+      double temp = Double.parseDouble(prava.getHodnotaPromenne());
+      leva.setHodnotaPromenne(String.valueOf(temp));
+      return leva;
+    }
+    //Jiny pokus o pretypovani - chyba
+    else {
+      leva.setHodnotaPromenne(null);
+      System.err.println("Pokus o prevod datoveho typu \"" + leva.getTypPromenne() + "\" na typ \"" + prava.getTypPromenne() + "\"!");
+      System.exit(1);
+    }
+  })
+}
+/**
+  * Vypis hodnoty vyrazu na standartni vstup, musi obsahovat alespon jeden vyraz
+  */
+void Print():{
+  Promenna vyraz1, vyraz2;
+}
+{
+  <PRINT>(vyraz1 = Operace0(){
+    //Ulozeni vyrazu do zasobniku
+    zasobnik.add(vyraz1.getHodnotaPromenne());
+  }
+  )(<CARKA> (vyraz2 = Operace0(){
+    //Ulozeni vyrazu do zasobniku
+    zasobnik.add(vyraz2.getHodnotaPromenne());
+  }
+  ))*{
+    //Vypiseme vsechny vyrazy ze zasobniku
+    for(int i = 0; i<zasobnik.size(); i++){
+      System.out.print(zasobnik.get(i));
+    }
+    zasobnik.clear();
+    System.out.println();
+  }
+}
+
+/**
+  * Nacitani hodnot ze standartniho vstupu, musi obsahovat alespon jednen identifikator
+  */
+void Read():{
+  Token t;
+  Promenna zdrojova;
+  String nazevPromenne;
+  BufferedInputStream reader = new BufferedInputStream(System.in);
+  int temp;
+  String nactenaData = "";
+}
+{
+  <READ>t = <IDENTIFIKATOR>{
+  nazevPromenne = t.toString();
+  //Pokud promenna existuje
+  if (seznamPromenych.containsKey(nazevPromenne)){
+    zdrojova = (Promenna)seznamPromenych.get(t.toString());
+    System.out.print("Zapis do promenne \"" + nazevPromenne + "\" (typ \"" + zdrojova.getTypPromenne() + "\"): ");
+  try {
+    while ((temp = reader.read()) != -1) {
+      if(((char) temp) == '\r') break;
+			if(((char) temp) == '\n') continue;
+			else nactenaData += (char) temp;
+    }
+    //Uložení do promìnné typu int
+		if(zdrojova.getTypPromenne().compareTo("int") == 0){
+      try{
+			   Integer novaHodnota = new Integer(Integer.parseInt(nactenaData));
+				 zdrojova.setHodnotaPromenne(String.valueOf(novaHodnota));
+			}
+			catch(NumberFormatException e){
+					System.err.println("Chyba pri ukladani promenne! Musite zadat typ int!");
+					System.exit(1);
+			}
+		}
+		//Uložení do promìnné typu float
+		else if(zdrojova.getTypPromenne().compareTo("float") == 0){
+		  try{
+			   Double novaHodnota = new Double(Double.parseDouble(nactenaData));
+			   zdrojova.setHodnotaPromenne(String.valueOf(novaHodnota));
+			}
+			catch(NumberFormatException e){
+			   System.err.println("Chyba pri ukladani promenne! Musite zadat typ float!");
+			   System.exit(1);
+			}
+		}
+		//Uložení do promìnné typu String
+		else if(zdrojova.getTypPromenne().compareTo("String") == 0){
+		  String novaHodnota = new String(nactenaData);
+			zdrojova.setHodnotaPromenne(novaHodnota);
+		}
+		//Uložení do promìnné typu boolean
+		else if(zdrojova.getTypPromenne().compareTo("boolean") == 0){
+  		if(nactenaData.compareTo("true") == 0){
+			   zdrojova.setHodnotaPromenne(String.valueOf("true"));
+			}
+			else if(nactenaData.compareTo("false") == 0){
+			   zdrojova.setHodnotaPromenne(String.valueOf("false"));
+			}
+			else{
+			   System.err.println("Chyba pri ukladani promenne! Musite zadat typ boolean!");
+			   System.exit(1);
+			}
+		}
+  }
+  catch (IOException e) {
+			System.err.println("Chyba cteni ze standartniho vstupu!");
+			System.exit(1);
+	}
+  }
+  else {
+      System.err.println("Promenna \"" + nazevPromenne + "\" neexistuje!");
+      System.exit(1);
+  }
+  }
+  (<CARKA> t = <IDENTIFIKATOR>{
+    nazevPromenne = t.toString();
+    //Pokud promenna existuje
+    if (seznamPromenych.containsKey(nazevPromenne)){
+      zdrojova = (Promenna)seznamPromenych.get(t.toString());
+      nactenaData = "";
+      System.out.print("Zapis do promenne \"" + nazevPromenne + "\" (typ \"" + zdrojova.getTypPromenne() + "\"): ");
+    try {
+      while ((temp = reader.read()) != -1) {
+        if(((char) temp) == '\r') break;
+  			if(((char) temp) == '\n') continue;
+  			else nactenaData += (char) temp;
+      }
+      //Uložení do promìnné typu int
+  		if(zdrojova.getTypPromenne().compareTo("int") == 0){
+        try{
+  			   Integer novaHodnota = new Integer(Integer.parseInt(nactenaData));
+  				 zdrojova.setHodnotaPromenne(String.valueOf(novaHodnota));
+  			}
+  			catch(NumberFormatException e){
+  					System.err.println("Chyba pri ukladani promenne! Musite zadat typ int!");
+  					System.exit(1);
+  			}
+  		}
+  		//Uložení do promìnné typu float
+  		else if(zdrojova.getTypPromenne().compareTo("float") == 0){
+  		  try{
+  			   Double novaHodnota = new Double(Double.parseDouble(nactenaData));
+  			   zdrojova.setHodnotaPromenne(String.valueOf(novaHodnota));
+  			}
+  			catch(NumberFormatException e){
+  			   System.err.println("Chyba pri ukladani promenne! Musite zadat typ float!");
+  			   System.exit(1);
+  			}
+  		}
+  		//Uložení do promìnné typu String
+  		else if(zdrojova.getTypPromenne().compareTo("String") == 0){
+  		  String novaHodnota = new String(nactenaData);
+  			zdrojova.setHodnotaPromenne(novaHodnota);
+  		}
+  		//Uložení do promìnné typu boolean
+  		else if(zdrojova.getTypPromenne().compareTo("boolean") == 0){
+    		if(nactenaData.compareTo("true") == 0){
+  			   zdrojova.setHodnotaPromenne(String.valueOf("true"));
+  			}
+  			else if(nactenaData.compareTo("false") == 0){
+  			   zdrojova.setHodnotaPromenne(String.valueOf("false"));
+  			}
+  			else{
+  			   System.err.println("Chyba pri ukladani promenne! Musite zadat typ boolean!");
+  			   System.exit(1);
+  			}
+  		}
+    }
+    catch (IOException e) {
+  			System.err.println("Chyba cteni ze standartniho vstupu!");
+  			System.exit(1);
+  	}
+    }
+    else {
+        System.err.println("Promenna \"" + nazevPromenne + "\" neexistuje!");
+        System.exit(1);
+    }
+  }
+  )*
+}
+/**
+  * Test, zda existuje danna promenna
+  */
+Promenna TestPromenne():{
+  Token t;
+  String nazevPromenne;
+}
+{
+  t = <IDENTIFIKATOR>{
+    nazevPromenne= t.toString();
+      if (!seznamPromenych.containsKey(nazevPromenne)){
+        System.err.println("Promenna \"" + nazevPromenne + "\" neexistuje nebo neni nadeklarovana!");
+        System.exit(1);
+    }
+    else {
+      return (Promenna)seznamPromenych.get(nazevPromenne);
+    }
+  }
+}
+
+/**
+  * Operace ||
+  */
+Promenna Operace0():{
+  String operator, typLeva, typPrava;
+  Promenna leva, prava;
+}
+{
+  leva = Operace03()((<OR>{
+    operator = "||";
+  }
+  )prava = Operace03(){
+    typLeva = leva.getTypPromenne();
+    typPrava = prava.getTypPromenne();
+    if (operator == "||"){
+      // logicky or boolean - bollean
+      if ((typLeva.compareTo("boolean") == 0) && (typPrava.compareTo("boolean") == 0)){
+        boolean temp1 = Boolean.parseBoolean(leva.getHodnotaPromenne());
+        boolean temp2 = Boolean.parseBoolean(prava.getHodnotaPromenne());
+        boolean vysledek = temp1 || temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      else {
+        System.err.println("Promenne nejsou typu Boolean");
+        System.exit(1);
+      }
+    }
+  }
+  )*{
+
+    return leva;
+  }
+}
+
+/**
+  * Operace &&
+  */
+Promenna Operace03():{
+  String operator, typLeva, typPrava;
+  Promenna leva, prava;
+}
+{
+  leva = Operace05()((<AND>{
+    operator = "&&";
+  }
+  )prava = Operace05(){
+    typLeva = leva.getTypPromenne();
+    typPrava = prava.getTypPromenne();
+    if (operator == "&&"){
+      // logicky and boolean - bollean
+      if (typLeva.compareTo("boolean") == 0 && typPrava.compareTo("boolean") == 0){
+        boolean temp1 = Boolean.parseBoolean(leva.getHodnotaPromenne());
+        boolean temp2 = Boolean.parseBoolean(prava.getHodnotaPromenne());
+        boolean vysledek = temp1 && temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      else {
+        System.err.println("Promenne nejsou typu Boolean");
+        System.exit(1);
+      }
+	}
+  }
+  )*{
+
+    return leva;
+  }
+}
+
+/**
+  * Operace < <= > >= == !=
+  */
+Promenna Operace05():{
+  String operator, typLeva, typPrava;
+  Promenna leva, prava;
+}
+{
+  leva = Operace1()((<MENSI>{
+    operator = "<";
+  }
+  | <MENSIROVNO>{
+    operator = "<=";
+  }
+  | <VETSI>{
+    operator = ">";
+  }
+  | <VETSIROVNO>{
+    operator = ">=";
+  }
+  | <ROVNO>{
+    operator = "==";
+  }
+  | <NEROVNO>{
+    operator = "!=";
+  }
+  )prava = Operace1(){
+    typLeva = leva.getTypPromenne();
+    typPrava = prava.getTypPromenne();
+    if (operator == "<"){
+      //Pri porovnani int+int
+      if (typLeva.compareTo("int") == 0 && typPrava.compareTo("int") == 0){
+        int temp1 = Integer.parseInt(leva.getHodnotaPromenne());
+        int temp2 = Integer.parseInt(prava.getHodnotaPromenne());
+        boolean vysledek = temp1<temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //Pri porovnani float+float
+      else if (typLeva.compareTo("float") == 0 && typPrava.compareTo("float") == 0){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        boolean vysledek = temp1<temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //pri porovnani float + int nebo int + float
+      else if (((typLeva.compareTo("float") == 0) && (typPrava.compareTo("int") == 0)) || ((typLeva.compareTo("int") == 0) && (typPrava.compareTo("float") == 0))){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        boolean vysledek = temp1<temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //pri porovnani string-string
+      else if ((typLeva.compareTo("String") == 0) || (typPrava.compareTo("String") == 0)){
+        String temp1 = leva.getHodnotaPromenne();
+        String temp2 = prava.getHodnotaPromenne();
+        boolean vysledek = temp1.compareTo(temp2) < 0;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      else {
+        System.err.println("Promenne nelze porovnavat");
+        System.exit(1);
+      }
+    }
+    if (operator == "<="){
+      //Pri porovnani int+int
+      if (typLeva.compareTo("int") == 0 && typPrava.compareTo("int") == 0){
+        int temp1 = Integer.parseInt(leva.getHodnotaPromenne());
+        int temp2 = Integer.parseInt(prava.getHodnotaPromenne());
+        boolean vysledek = temp1<=temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //Pri porovnani float+float
+      else if (typLeva.compareTo("float") == 0 && typPrava.compareTo("float") == 0){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        boolean vysledek = temp1<=temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //pri porovnani float + int nebo int + float
+      else if (((typLeva.compareTo("float") == 0) && (typPrava.compareTo("int") == 0)) || ((typLeva.compareTo("int") == 0) && (typPrava.compareTo("float") == 0))){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        boolean vysledek = temp1<=temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //pri porovnani string-string
+      else if ((typLeva.compareTo("String") == 0) || (typPrava.compareTo("String") == 0)){
+        String temp1 = leva.getHodnotaPromenne();
+        String temp2 = prava.getHodnotaPromenne();
+        boolean vysledek = temp1.compareTo(temp2) <= 0;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      else {
+        System.err.println("Promenne nelze porovnavat");
+        System.exit(1);
+      }
+    }
+    if (operator == ">"){
+      //Pri porovnani int+int
+      if (typLeva.compareTo("int") == 0 && typPrava.compareTo("int") == 0){
+        int temp1 = Integer.parseInt(leva.getHodnotaPromenne());
+        int temp2 = Integer.parseInt(prava.getHodnotaPromenne());
+        boolean vysledek = temp1>temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //Pri porovnani float+float
+      else if (typLeva.compareTo("float") == 0 && typPrava.compareTo("float") == 0){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        boolean vysledek = temp1>temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //pri porovnani float + int nebo int + float
+      else if (((typLeva.compareTo("float") == 0) && (typPrava.compareTo("int") == 0)) || ((typLeva.compareTo("int") == 0) && (typPrava.compareTo("float") == 0))){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        boolean vysledek = temp1>temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //pri porovnani string-string
+      else if ((typLeva.compareTo("String") == 0) || (typPrava.compareTo("String") == 0)){
+        String temp1 = leva.getHodnotaPromenne();
+        String temp2 = prava.getHodnotaPromenne();
+        boolean vysledek = temp1.compareTo(temp2) > 0;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      else {
+        System.err.println("Promenne nelze porovnavat");
+        System.exit(1);
+      }
+    }
+    if (operator == ">="){
+      //Pri porovnani int+int
+      if (typLeva.compareTo("int") == 0 && typPrava.compareTo("int") == 0){
+        int temp1 = Integer.parseInt(leva.getHodnotaPromenne());
+        int temp2 = Integer.parseInt(prava.getHodnotaPromenne());
+        boolean vysledek = temp1>=temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //Pri porovnani float+float
+      else if (typLeva.compareTo("float") == 0 && typPrava.compareTo("float") == 0){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        boolean vysledek = temp1>=temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //pri porovnani float + int nebo int + float
+      else if (((typLeva.compareTo("float") == 0) && (typPrava.compareTo("int") == 0)) || ((typLeva.compareTo("int") == 0) && (typPrava.compareTo("float") == 0))){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        boolean vysledek = temp1>=temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //pri porovnani string-string
+      else if ((typLeva.compareTo("String") == 0) || (typPrava.compareTo("String") == 0)){
+        String temp1 = leva.getHodnotaPromenne();
+        String temp2 = prava.getHodnotaPromenne();
+        boolean vysledek = temp1.compareTo(temp2) >= 0;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      else {
+        System.err.println("Promenne nelze porovnavat");
+        System.exit(1);
+      }
+    }
+    if (operator == "=="){
+      //Pri porovnani int+int
+      if (typLeva.compareTo("int") == 0 && typPrava.compareTo("int") == 0){
+        int temp1 = Integer.parseInt(leva.getHodnotaPromenne());
+        int temp2 = Integer.parseInt(prava.getHodnotaPromenne());
+        boolean vysledek = temp1==temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //Pri porovnani float+float
+      else if (typLeva.compareTo("float") == 0 && typPrava.compareTo("float") == 0){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        boolean vysledek = temp1==temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //pri porovnani float + int nebo int + float
+      else if (((typLeva.compareTo("float") == 0) && (typPrava.compareTo("int") == 0)) || ((typLeva.compareTo("int") == 0) && (typPrava.compareTo("float") == 0))){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        boolean vysledek = temp1==temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //pri porovnani string-string
+      else if ((typLeva.compareTo("String") == 0) || (typPrava.compareTo("String") == 0)){
+        String temp1 = leva.getHodnotaPromenne();
+        String temp2 = prava.getHodnotaPromenne();
+        boolean vysledek = temp1.compareTo(temp2) == 0;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      else {
+        System.err.println("Promenne nelze porovnavat");
+        System.exit(1);
+      }
+    }
+    if (operator == "!="){
+      //Pri porovnani int+int
+      if (typLeva.compareTo("int") == 0 && typPrava.compareTo("int") == 0){
+        int temp1 = Integer.parseInt(leva.getHodnotaPromenne());
+        int temp2 = Integer.parseInt(prava.getHodnotaPromenne());
+        boolean vysledek = temp1!=temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //Pri porovnani float+float
+      else if (typLeva.compareTo("float") == 0 && typPrava.compareTo("float") == 0){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        boolean vysledek = temp1!=temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //pri porovnani float + int nebo int + float
+      else if (((typLeva.compareTo("float") == 0) && (typPrava.compareTo("int") == 0)) || ((typLeva.compareTo("int") == 0) && (typPrava.compareTo("float") == 0))){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        boolean vysledek = temp1!=temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      //pri porovnani string-string
+      else if ((typLeva.compareTo("String") == 0) || (typPrava.compareTo("String") == 0)){
+        String temp1 = leva.getHodnotaPromenne();
+        String temp2 = prava.getHodnotaPromenne();
+        boolean vysledek = temp1.compareTo(temp2) != 0;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("boolean");
+      }
+      else {
+        System.err.println("Promenne nelze porovnavat");
+        System.exit(1);
+      }
+    }
+  }
+  )*{
+
+    return leva;
+  }
+}
+
+
+/**
+  * Operace +, - a .
+  */
+Promenna Operace1():{
+  String operator, typLeva, typPrava;
+  Promenna leva, prava;
+}
+{
+  leva = Operace2()((<PLUS>{
+    operator = "+";
+  }
+  | <MINUS>{
+    operator = "-";
+  }
+  | <TECKA>{
+    operator = ".";
+  }
+  )prava = Operace2(){
+    typLeva = leva.getTypPromenne();
+    typPrava = prava.getTypPromenne();
+    if (operator == "+"){
+      //Pri scitani int+int
+      if (typLeva.compareTo("int") == 0 && typPrava.compareTo("int") == 0){
+        int temp1 = Integer.parseInt(leva.getHodnotaPromenne());
+        int temp2 = Integer.parseInt(prava.getHodnotaPromenne());
+        int vysledek = temp1+temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("int");
+      }
+      //Pri scitani float+float
+      else if (typLeva.compareTo("float") == 0 && typPrava.compareTo("float") == 0){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        double vysledek = temp1+temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("float");
+      }
+      //pri scitani float + int nebo int + float
+      else if (((typLeva.compareTo("float") == 0) && (typPrava.compareTo("int") == 0)) || ((typLeva.compareTo("int") == 0) && (typPrava.compareTo("float") == 0))){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        double vysledek = temp1+temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("float");
+      }
+      //Pri pokusu scitat string
+      else if ((typLeva.compareTo("String") == 0) || (typPrava.compareTo("String") == 0)){
+        System.err.println("Promenne typu String nelze scitat");
+        System.exit(1);
+      }
+    }
+    if (operator == "-"){
+      //Pri odecitani int-int
+      if ((typLeva.compareTo("int") == 0) && (typPrava.compareTo("int") == 0)){
+        int temp1 = Integer.parseInt(leva.getHodnotaPromenne());
+        int temp2 = Integer.parseInt(prava.getHodnotaPromenne());
+        int vysledek = temp1-temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("int");
+      }
+      //Pri odecitani float-float
+      else if ((typLeva.compareTo("float") == 0) && (typPrava.compareTo("float") == 0)){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        double vysledek = temp1-temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("float");
+      }
+      //Pri odecitani float-int nebo int-float
+      else if (((typLeva.compareTo("float") == 0) && (typPrava.compareTo("int") == 0)) || ((typLeva.compareTo("int") == 0) && (typPrava.compareTo("float") == 0))){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        double vysledek = temp1-temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("float");
+      }
+      //Pri pokusu odecitat string
+      else if((typLeva.compareTo("String") == 0) || (typPrava.compareTo("String") == 0)){
+        System.err.println("Promenne typu String nelze odecitat");
+        System.exit(1);
+      }
+    }
+    if (operator == "."){
+      if ((typLeva.compareTo("String") == 0) && (typPrava.compareTo("String") == 0)){
+        leva.setHodnotaPromenne(leva.getHodnotaPromenne()+prava.getHodnotaPromenne());
+      }
+      //Pri pokusu sloucit neco jineho
+      else{
+        System.err.println("Promenne typu jineho nez String nelze sloucit");
+        System.exit(1);
+      }
+  }
+  }
+  )*{
+
+    return leva;
+  }
+}
+
+/**
+  * Operace *, / a %
+  */
+Promenna Operace2():{
+  String operator, typLeva, typPrava;
+  Promenna leva, prava;
+}
+{
+  leva = Slozka()((<KRAT>{
+    operator = "*";
+  }
+  | <DELENO>{
+    operator = "/";
+  }
+  | <MOD>{
+    operator = "%";
+  }
+  )prava = Slozka(){
+    typLeva = leva.getTypPromenne();
+    typPrava = prava.getTypPromenne();
+    if (operator == "*"){
+      //nasobeni int*int
+      if ((typLeva.compareTo("int") == 0) && typPrava.compareTo("int") == 0){
+        int temp1 = Integer.parseInt(leva.getHodnotaPromenne());
+        int temp2 = Integer.parseInt(prava.getHodnotaPromenne());
+        int vysledek = temp1*temp2; 
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("int");
+      }
+      //nasobeni float*float
+      else if ((typLeva.compareTo("float") == 0) && typPrava.compareTo("float") == 0){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        double vysledek = temp1*temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("float");
+      }
+      //nasobeni int*float nebo float*int
+      else if (((typLeva.compareTo("int") == 0) && (typPrava.compareTo("float") == 0)) || ((typLeva.compareTo("float") == 0) && (typPrava.compareTo("int") == 0))){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        double vysledek = temp1*temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("float");
+      }
+      //Pri pokusu o nasobeni stringu
+      else if((typLeva.compareTo("String") == 0) || (typPrava.compareTo("String") == 0)){
+        System.err.println("Promenne typu String nelze nasobit");
+        System.exit(1);
+      }
+    }
+    if (operator == "/"){
+      //deleni int/int
+      if (((leva.getTypPromenne().compareTo("int") == 0) && (prava.getTypPromenne().compareTo("int") == 0))){
+        int temp1 = Integer.parseInt(leva.getHodnotaPromenne());
+        int temp2 = Integer.parseInt(prava.getHodnotaPromenne());
+        int vysledek = temp1/temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("int ");
+      }
+      //deleni float/float
+      else if (((leva.getTypPromenne().compareTo("float") == 0) && (prava.getTypPromenne().compareTo("float") == 0))){
+
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        double vysledek = temp1/temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("float");
+      }
+      //deleni float/int nebo int/float
+      else if (((leva.getTypPromenne().compareTo("float") == 0) && (prava.getTypPromenne().compareTo("int") == 0)) || ((leva.getTypPromenne().compareTo("int") == 0) && (prava.getTypPromenne().compareTo("float") == 0))){
+        double temp1 = Double.parseDouble(leva.getHodnotaPromenne());
+        double temp2 = Double.parseDouble(prava.getHodnotaPromenne());
+        double vysledek = temp1/temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("float");
+      }
+      //pri pokusu o deleni stringu
+      else if((leva.getTypPromenne().compareTo("String") == 0) || (prava.getTypPromenne().compareTo("String") == 0)){
+        System.err.println("Promenne typu String nelze delit");
+        System.exit(1);
+      }
+    }
+    if (operator == "%"){
+      //Zbytek po celociselnem deleni
+      if ((leva.getTypPromenne().compareTo(prava.getTypPromenne()) == 0) && (leva.getTypPromenne().compareTo("int") == 0)){
+        int temp1 = Integer.parseInt(leva.getHodnotaPromenne());
+        int temp2 = Integer.parseInt(prava.getHodnotaPromenne());
+        int vysledek = temp1%temp2;
+        leva.setHodnotaPromenne(String.valueOf(vysledek));
+        leva.setTypPromenne("int");
+      }
+      //Pri pokusu delit string nebo jine
+      else{
+        System.err.println("U promenne typu String nelze zjistit zbytek po deleni");
+        System.exit(1);
+      }
+    }
+  }
+  )*{
+    return leva;
+  }
+}
+
+/**
+  * Práce s jednotlivymi slozkami - unarni minus, !, - pro cele zavorky
+  */
+Promenna Slozka():{
+  Token t;
+  Promenna prom;
+  int test=0;
+  String retezec;
+}
+{
+  //Unarni minus pred intem
+  (("-"){test=1;})* (t = <HODNOTA_INT>{
+    retezec=t.toString();
+    if(test==1){
+      int cislo=Integer.valueOf(retezec);
+      cislo=cislo*-1;
+      retezec=String.valueOf(cislo);
+    }
+    return new Promenna(null, "int", retezec);
+  }
+  //unarni minus pred floatem
+  | t = <HODNOTA_FLOAT>{
+    retezec=t.toString();
+    if(test==1){
+      float cislo=new Float(retezec);
+    	cislo=cislo*-1;
+    	retezec=String.valueOf(cislo);
+    }
+    return new Promenna(null, "float", retezec);
+  }
+  //unarni minus pred promenou + osetreni booleanu
+  |  t = <IDENTIFIKATOR>{
+    prom = (Promenna)seznamPromenych.get(t.toString());
+    if((t.toString().compareTo("true") == 0)) {
+      return new Promenna(null, "boolean", "true");
+    }
+    if((t.toString().compareTo("false") == 0)) {
+      return new Promenna(null, "boolean", "false");
+    }
+    if (prom.getHodnotaPromenne() != null){
+      retezec=t.toString();
+      if(test==1){
+        if(prom.getTypPromenne().compareTo("int") == 0) {
+        	int cislo= new Integer(prom.getHodnotaPromenne());
+        	cislo=cislo*-1;
+    	    return new Promenna(null, "int", String.valueOf(cislo));
+        }
+        else if(prom.getTypPromenne().compareTo("float") == 0) {
+        	float cislo=new Float(prom.getHodnotaPromenne());
+    	    cislo=cislo*-1;
+          return new Promenna(null, "float", String.valueOf(cislo));
+        }
+      }
+      else {
+        return new Promenna(null, prom.getTypPromenne(), prom.getHodnotaPromenne());
+      }
+    }
+    else {
+      System.err.println("Neznama promena \"" + t.toString() + "\"!");
+      System.exit(1);
+    }
+  
+  
+  
+  }
+  )
+  //Negace booleanu
+  | (("!"){}) t = <IDENTIFIKATOR>{
+    if((t.toString().compareTo("true") == 0)) {
+      return new Promenna(null, "boolean", "false");
+    }
+    if((t.toString().compareTo("false") == 0)) {
+      return new Promenna(null, "boolean", "true");
+    }
+    prom = (Promenna)seznamPromenych.get(t.toString());
+    if(prom.getTypPromenne().compareTo("boolean") == 0) {
+      if(prom.getHodnotaPromenne().compareTo("true") == 0) {
+        return new Promenna(null, "boolean", "false");
+      }
+      if(prom.getHodnotaPromenne().compareTo("false") == 0) {
+        return new Promenna(null, "boolean", "true");
+      }
+    }
+    else {
+      System.out.println("Chyba");
+      System.exit(1);
+    }
+  }
+  //Stringova hodnota
+  | t = <HODNOTA_STRING>{
+    //Orizneme uvozovky
+    return new Promenna(null, "String", (String)t.toString().subSequence(1, t.toString().length()-1));
+  }
+  //Boolean hodnota
+  | t = <HODNOTA_BOOLEAN>{
+    return new Promenna(null, "boolean", t.toString());
+  }
+  //Zavorky  
+  | "("prom = Operace0()")"{
+    return prom;
+  }
+  //unarni - pred zavorkou
+  | "-("prom = Operace0()")"{
+    if(prom.getTypPromenne().compareTo("int") == 0) {
+      int cislo=new Integer(prom.getHodnotaPromenne());
+    	cislo=cislo*-1;
+      prom.setHodnotaPromenne(String.valueOf(cislo));
+    }
+    else if(prom.getTypPromenne().compareTo("float") == 0) {
+     	float cislo=new Float(prom.getHodnotaPromenne());
+    	cislo=cislo*-1;
+      prom.setHodnotaPromenne(String.valueOf(cislo));
+    }
+    return prom;
+  }
+  
+}

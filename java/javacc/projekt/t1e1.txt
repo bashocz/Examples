@@ -1,0 +1,26 @@
+print "<Test zpracovani chyb>";
+
+print "4) mod pouzito s operandem real";
+print "20 mod 3.0: ", 20 % 3.0;
+
+print "8) prirazeni real do int";
+int  x;
+x = 13.25;
+print "x=13.25: ", x;
+
+
+
+
+
+print "16) konkatenace jen mezi retezci";
+print "abc+10: ", "abc".10;
+
+print "19) nasobna deklarace";
+float x;
+
+print "22) chybejici deklarace";
+y = 10;
+
+print "25) neukonceny retezec";
+print "zac<cr>atek: ", "zac;
+print "Konec testu\n";

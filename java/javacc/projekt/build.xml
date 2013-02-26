@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="InterpretacniPrekladac" default="all" basedir=".">
+<property name="src" location="src"/>
+<property name="build" location="classes"/>
+<target name="all" depends="init,javaccgen,compile,run"/>
+
+<!-- Inicializace adresare-->
+<target name="init">
+  <mkdir dir="${build}"/>
+</target>
+<!-- Generovani kompilatoru -->
+<target name="javaccgen" depends="init">
+<javacc
+    target="src/InterpretacniPrekladac.jj"
+    outputdirectory="classes/"
+    javacchome="c:\pjp\javacc-4.0\bin\lib"
+    static="true"
+/>
+</target>
+<!-- Preklad javac -->
+<target name="compile" depends="javaccgen">
+   <javac  srcdir="${build}" destdir="${build}"/>
+</target>
+<!-- Spusteni -->
+<target name="run" depends="compile">
+   <java classname="InterpretacniPrekladac">
+       
+       <classpath><pathelement location="${build}"/></classpath>
+       <arg value="${src}/testovaciZdrojak.txt" />
+   </java>
+</target>
+</project>

@@ -1,0 +1,1 @@
+D:\VSB\4.semestr\DU\PJP\Projekt2\javacc-4.2\bin\javacc D:\VSB\4.semestr\DU\PJP\Projekt2\projekt\InterpretacniPrekladac.jj

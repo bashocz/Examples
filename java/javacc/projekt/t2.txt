@@ -1,0 +1,13 @@
+print "<Relacni operatory>";
+print "1<5: ", 1 < 5;
+print "1>=3.5: ", 1 >= 3.5;
+print "aa=aa: ", "aa"=="aa";
+print "aa=ab: ", "aa"=="ab";
+print "aa<>ab: ", "aa"!="ab";
+print "";
+print "<Logicke operatory>";
+print "false and true (false):", false && true;
+print "false or true (true):", false || true;
+//print "not 1==2 (true):", !(1==2);
+print "not 1==2 (true):", !false;
+print "true or false and true (false):", true || false && true;
