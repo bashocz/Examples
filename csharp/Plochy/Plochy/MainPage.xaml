@@ -1,0 +1,170 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit" xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" xmlns:local="clr-namespace:Plochy" xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input" x:Class="Plochy.MainPage"
+    d:DesignWidth="640" d:DesignHeight="480" Margin="0">
+	<UserControl.Resources>
+		<Color x:Key="BorderColor">#FF14146C</Color>
+		<Color x:Key="DrawBackgroundColor">#FF787878</Color>
+		<Color x:Key="PanelColor">#FFA1A1A1</Color>
+	</UserControl.Resources>
+  <Grid x:Name="LayoutRoot">
+
+  	<Grid.RowDefinitions>
+  		<RowDefinition Height="48"/>
+  		<RowDefinition/>
+  		<RowDefinition Height="0"/>
+  	</Grid.RowDefinitions>
+  	<Grid.ColumnDefinitions>
+  		<ColumnDefinition Width="200"/>
+  		<ColumnDefinition/>
+  		<ColumnDefinition Width="80"/>
+  	</Grid.ColumnDefinitions>
+  	<StackPanel x:Name="StackMenu" Grid.ColumnSpan="3" Orientation="Horizontal">
+  		<StackPanel.Background>
+  			<SolidColorBrush Color="{StaticResource PanelColor}"/>
+  		</StackPanel.Background>
+  		<TextBlock Margin="10,5,0,16" FontFamily="Fonts/Fonts.zip#Bauhaus 93" FontSize="24" FontWeight="Bold" Text="Plochy" TextWrapping="Wrap"/>
+  		<TextBlock Margin="10,15,48,0" Text="Vykreslení Bézierovy, nebo Coonsovy B-spline plochy, která je zadaná 16 řídícími body." TextWrapping="Wrap"/>
+  	</StackPanel>
+  	<Rectangle RadiusX="2" RadiusY="2" Height="4" HorizontalAlignment="Right" Margin="0,19,16,0" VerticalAlignment="Top" Width="100" Grid.Column="1" Grid.ColumnSpan="2">
+  		<Rectangle.Fill>
+  			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+  				<LinearGradientBrush.RelativeTransform>
+  					<TransformGroup>
+  						<ScaleTransform CenterX="0.5" CenterY="0.5"/>
+  						<SkewTransform CenterX="0.5" CenterY="0.5"/>
+  						<RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+  						<TranslateTransform/>
+  					</TransformGroup>
+  				</LinearGradientBrush.RelativeTransform>
+  				<GradientStop Color="#FFA1A1A1" Offset="1"/>
+  				<GradientStop Color="#FF444444" Offset="0.5"/>
+  			</LinearGradientBrush>
+  		</Rectangle.Fill>
+  	</Rectangle>
+  	<TextBlock Margin="0,5,36,16" FontFamily="Fonts/Fonts.zip#Bauhaus 93" FontSize="24" FontWeight="Bold" Text="basho" TextWrapping="Wrap" HorizontalAlignment="Right" Grid.Column="1" Grid.ColumnSpan="2" FontStyle="Italic"/>
+  	<Border BorderThickness="0,0,1,1" Margin="8,4,8,6" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" Grid.ColumnSpan="3" d:LayoutRounding="Auto">
+  		<Border.BorderBrush>
+  			<SolidColorBrush Color="{StaticResource BorderColor}"/>
+  		</Border.BorderBrush>
+  		<Border.Effect>
+  			<DropShadowEffect ShadowDepth="2"/>
+  		</Border.Effect>
+  		<Border.RenderTransform>
+  			<TransformGroup>
+  				<ScaleTransform/>
+  				<SkewTransform AngleX="-10"/>
+  				<RotateTransform/>
+  				<TranslateTransform/>
+  			</TransformGroup>
+  		</Border.RenderTransform>
+  	</Border>
+  	<StackPanel x:Name="StackFace" Margin="0" Grid.Row="1">
+  		<StackPanel.Background>
+  			<SolidColorBrush Color="{StaticResource PanelColor}"/>
+  		</StackPanel.Background>
+  		<TextBlock Text="Nastavení plochy" TextWrapping="Wrap" Margin="5,0,5,10" FontSize="12" FontWeight="Bold"/>
+  		<RadioButton x:Name="RbBezier" Content="Bezier" Margin="5,0,5,5"/>
+  		<RadioButton x:Name="RbCoonsBspline" HorizontalAlignment="Left" Content="Coons B-spline" Margin="5,0,5,5" IsChecked="True"/>
+  		<TextBlock Text="Počet křivek (n*n) [2..32]:" TextWrapping="Wrap" Margin="5,0"/>
+  		<TextBox x:Name="TbSoftness" Text="{Binding Softness, Mode=TwoWay, ValidatesOnExceptions=true}" Margin="5,0,5,5"/>
+  		<TextBlock Text="Příklady ploch" TextWrapping="Wrap" Margin="5,10" FontSize="12" FontWeight="Bold"/>
+  		<Grid Height="100" Margin="5,0,5,5">
+  			<Grid.RowDefinitions>
+  				<RowDefinition/>
+  				<RowDefinition/>
+  				<RowDefinition/>
+  				<RowDefinition/>
+  			</Grid.RowDefinitions>
+  			<Grid.ColumnDefinitions>
+  				<ColumnDefinition/>
+  				<ColumnDefinition/>
+  			</Grid.ColumnDefinitions>
+  			<Button x:Name="BtnExample1" Margin="0,0,25,3" Content="Příklad 1" d:LayoutOverrides="Height"/>
+  			<Button x:Name="BtnExample2" Margin="0,0,25,3" Content="Příklad 2" Grid.Column="1" d:LayoutOverrides="Height"/>
+  			<Button x:Name="BtnExample3" Margin="0,0,25,3" VerticalAlignment="Top" Content="Příklad 3" Grid.Row="1"/>
+  			<Button x:Name="BtnExample4" Margin="0,0,25,3" Content="Příklad 4" Grid.Column="1" Grid.Row="1" d:LayoutOverrides="Height"/>
+  			<Button x:Name="BtnExample5" Margin="0,0,25,3" Content="Příklad 5" Grid.Row="2" d:LayoutOverrides="Height"/>
+  			<Button x:Name="BtnExample6" Margin="0,0,25,3" Content="Příklad 6" Grid.Column="1" Grid.Row="2" d:LayoutOverrides="Height"/>
+  			<Button x:Name="BtnExample7" Margin="0,0,25,3" Content="Příklad 7" Grid.Row="3" d:LayoutOverrides="Height"/>
+  			<Button x:Name="BtnExample8" Margin="0,0,25,3" Content="Příklad 8" Grid.Column="1" Grid.Row="3" d:LayoutOverrides="Height"/>
+  		</Grid>
+  		<TextBlock Text="Nápověda" TextWrapping="Wrap" Margin="5,0,5,10" FontSize="12" FontWeight="Bold"/>
+  		<TextBlock Text="Pohyb zobrazením" TextWrapping="Wrap" Margin="5,0"/>
+  		<TextBlock Text="stisk levého tlačítka + pohyb myší" TextWrapping="Wrap" Margin="5,0" FontSize="10" FontStyle="Italic"/>
+  		<TextBlock Text="Označení řídícího bodu" TextWrapping="Wrap" Margin="5,0"/>
+  		<TextBlock Text="stisk levého tlačítka v blízkosti bodu" TextWrapping="Wrap" Margin="5,0" FontSize="10" FontStyle="Italic"/>
+  		<TextBlock Text="Pohyb řídícího bodu" TextWrapping="Wrap" Margin="5,0"/>
+  		<TextBlock Text="stisk levého tlačítka na šipce osy + pohyb myší" TextWrapping="Wrap" Margin="5,0" FontSize="10" FontStyle="Italic"/>
+  	</StackPanel>
+  	<StackPanel x:Name="StackOption" Margin="0" Grid.Column="2" Grid.Row="1">
+  		<StackPanel.Background>
+  			<SolidColorBrush Color="{StaticResource PanelColor}"/>
+  		</StackPanel.Background>
+  		<CheckBox x:Name="Cb3D" Content="3D / 2D" Margin="5,0,5,5" IsChecked="True" Visibility="Collapsed"/>
+  		<navigation:Frame Height="2" Content="" Margin="5,0,5,5" Visibility="Collapsed">
+  			<navigation:Frame.BorderBrush>
+  				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+  					<GradientStop Color="Black"/>
+  					<GradientStop Color="White" Offset="1"/>
+  				</LinearGradientBrush>
+  			</navigation:Frame.BorderBrush>
+  		</navigation:Frame>
+  		<CheckBox Margin="5,0,5,5" Content="Osy" ToolTipService.ToolTip="Zobrazit / skrýt osy" IsChecked="{Binding DrawingAxis, Mode=TwoWay}"/>
+  		<CheckBox Margin="5,0,5,5" Content="Mřížka" ToolTipService.ToolTip="Zobrazit / skrýt mřížku" IsChecked="{Binding DrawingGrid, Mode=TwoWay}"/>
+  		<CheckBox Margin="5,0,5,5" Content="Body" ToolTipService.ToolTip="Zobrazit / skrýt řídící body" IsChecked="{Binding DrawingPoint, Mode=TwoWay}"/>
+  		<CheckBox Margin="5,0,5,5" Content="Plocha" ToolTipService.ToolTip="Zobrazit / skrýt plochu" IsChecked="{Binding DrawingSurface, Mode=TwoWay}"/>
+  		<dataInput:Label Margin="5,0" Content="Zvětšení"/>
+  		<ComboBox Margin="5,0,5,5" ToolTipService.ToolTip="Zvětšení zobrazení" ItemsSource="{Binding ZoomList, Mode=OneWay}" SelectedIndex="{Binding ZoomIndex, Mode=TwoWay}"/>
+  		<Button x:Name="BtnDefault" Content="Výchozí" Margin="5,0,5,5" ToolTipService.ToolTip="Výchozí zobrazení"/>
+  	</StackPanel>
+  	<StackPanel x:Name="StackStatus" Margin="0" Grid.ColumnSpan="3" Grid.Row="2">
+  		<StackPanel.Background>
+  			<SolidColorBrush Color="{StaticResource PanelColor}"/>
+  		</StackPanel.Background>
+  	</StackPanel>
+  	<Grid Margin="0" Grid.Row="1" Grid.Column="1">
+  		<Grid.Background>
+  			<SolidColorBrush Color="{StaticResource DrawBackgroundColor}"/>
+  		</Grid.Background>
+  		<Grid x:Name="DrawContainer" Margin="5">
+  			<Grid.RowDefinitions>
+  				<RowDefinition/>
+  				<RowDefinition Height="0*"/>
+  			</Grid.RowDefinitions>
+  			<Grid.ColumnDefinitions>
+  				<ColumnDefinition/>
+  				<ColumnDefinition Width="0*"/>
+  			</Grid.ColumnDefinitions>
+  			<Grid.Background>
+  				<SolidColorBrush Color="{StaticResource DrawBackgroundColor}"/>
+  			</Grid.Background>
+  			<Image x:Name="ImgDraw3DProjection" MouseEnter="ImgDraw3DProjection_MouseEnter"/>
+  		</Grid>
+  		<Border BorderThickness="2">
+  			<Border.BorderBrush>
+  				<SolidColorBrush Color="{StaticResource BorderColor}"/>
+  			</Border.BorderBrush>
+  			<Border.OpacityMask>
+  				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+  					<LinearGradientBrush.RelativeTransform>
+  						<TransformGroup>
+  							<ScaleTransform CenterX="0.5" CenterY="0.5"/>
+  							<SkewTransform CenterX="0.5" CenterY="0.5"/>
+  							<RotateTransform Angle="-45" CenterX="0.5" CenterY="0.5"/>
+  							<TranslateTransform/>
+  						</TransformGroup>
+  					</LinearGradientBrush.RelativeTransform>
+  					<GradientStop Color="#33000000"/>
+  					<GradientStop Color="#CCFFFFFF" Offset="1"/>
+  					<GradientStop Color="#33838383" Offset="0.5"/>
+  					<GradientStop Color="#CC999999" Offset="0.5"/>
+  				</LinearGradientBrush>
+  			</Border.OpacityMask>
+  		</Border>
+  	</Grid>
+
+  </Grid>
+</UserControl>
