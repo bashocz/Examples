@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastleWindsorDemo", "CastleWindsorDemo\CastleWindsorDemo.csproj", "{0E7AD34B-95B3-4846-9E03-3824E5782876}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{38365D4F-8BEA-4981-9F79-60A38BFBF328}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyDependencyDemo", "PropertyDependencyDemo\PropertyDependencyDemo.csproj", "{DA725FC5-BA3E-4F3E-90E8-987E3A6D4E6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingObjectPropertiesDemo", "LoggingObjectPropertiesDemo\LoggingObjectPropertiesDemo.csproj", "{C58CE652-FC1D-4F40-BE91-B1C8F15F50A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypedFactoryReleasingMeasurementDemo", "TypedFactoryReleasingMeasurementDemo\TypedFactoryReleasingMeasurementDemo.csproj", "{D622DB20-F855-4E4A-85B4-2D2AD6BCCB0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypedFactoryMethodParametersDemo", "TypedFactoryMethodParametersDemo\TypedFactoryMethodParametersDemo.csproj", "{704D16FF-747A-4638-9139-0F3D55A33EBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionDependencyDemo", "CollectionDependencyDemo\CollectionDependencyDemo.csproj", "{08F1928B-74D2-48B7-88F1-FFFBA9735FFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionHandlingDemo", "ExceptionHandlingDemo\ExceptionHandlingDemo.csproj", "{5A2DD707-F364-4F23-B74F-FC4FBDC96ACE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoopThroughEnumDemo", "LoopThroughEnumDemo\LoopThroughEnumDemo.csproj", "{3EC1B128-68AC-41F6-9CB4-45CF7BC3FB91}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E7AD34B-95B3-4846-9E03-3824E5782876}.Debug|x86.ActiveCfg = Debug|x86
+		{0E7AD34B-95B3-4846-9E03-3824E5782876}.Debug|x86.Build.0 = Debug|x86
+		{0E7AD34B-95B3-4846-9E03-3824E5782876}.Release|x86.ActiveCfg = Release|x86
+		{0E7AD34B-95B3-4846-9E03-3824E5782876}.Release|x86.Build.0 = Release|x86
+		{38365D4F-8BEA-4981-9F79-60A38BFBF328}.Debug|x86.ActiveCfg = Debug|x86
+		{38365D4F-8BEA-4981-9F79-60A38BFBF328}.Debug|x86.Build.0 = Debug|x86
+		{38365D4F-8BEA-4981-9F79-60A38BFBF328}.Release|x86.ActiveCfg = Release|x86
+		{38365D4F-8BEA-4981-9F79-60A38BFBF328}.Release|x86.Build.0 = Release|x86
+		{DA725FC5-BA3E-4F3E-90E8-987E3A6D4E6E}.Debug|x86.ActiveCfg = Debug|x86
+		{DA725FC5-BA3E-4F3E-90E8-987E3A6D4E6E}.Debug|x86.Build.0 = Debug|x86
+		{DA725FC5-BA3E-4F3E-90E8-987E3A6D4E6E}.Release|x86.ActiveCfg = Release|x86
+		{DA725FC5-BA3E-4F3E-90E8-987E3A6D4E6E}.Release|x86.Build.0 = Release|x86
+		{C58CE652-FC1D-4F40-BE91-B1C8F15F50A9}.Debug|x86.ActiveCfg = Debug|x86
+		{C58CE652-FC1D-4F40-BE91-B1C8F15F50A9}.Debug|x86.Build.0 = Debug|x86
+		{C58CE652-FC1D-4F40-BE91-B1C8F15F50A9}.Release|x86.ActiveCfg = Release|x86
+		{C58CE652-FC1D-4F40-BE91-B1C8F15F50A9}.Release|x86.Build.0 = Release|x86
+		{D622DB20-F855-4E4A-85B4-2D2AD6BCCB0F}.Debug|x86.ActiveCfg = Debug|x86
+		{D622DB20-F855-4E4A-85B4-2D2AD6BCCB0F}.Debug|x86.Build.0 = Debug|x86
+		{D622DB20-F855-4E4A-85B4-2D2AD6BCCB0F}.Release|x86.ActiveCfg = Release|x86
+		{D622DB20-F855-4E4A-85B4-2D2AD6BCCB0F}.Release|x86.Build.0 = Release|x86
+		{704D16FF-747A-4638-9139-0F3D55A33EBA}.Debug|x86.ActiveCfg = Debug|x86
+		{704D16FF-747A-4638-9139-0F3D55A33EBA}.Debug|x86.Build.0 = Debug|x86
+		{704D16FF-747A-4638-9139-0F3D55A33EBA}.Release|x86.ActiveCfg = Release|x86
+		{704D16FF-747A-4638-9139-0F3D55A33EBA}.Release|x86.Build.0 = Release|x86
+		{08F1928B-74D2-48B7-88F1-FFFBA9735FFF}.Debug|x86.ActiveCfg = Debug|x86
+		{08F1928B-74D2-48B7-88F1-FFFBA9735FFF}.Debug|x86.Build.0 = Debug|x86
+		{08F1928B-74D2-48B7-88F1-FFFBA9735FFF}.Release|x86.ActiveCfg = Release|x86
+		{08F1928B-74D2-48B7-88F1-FFFBA9735FFF}.Release|x86.Build.0 = Release|x86
+		{5A2DD707-F364-4F23-B74F-FC4FBDC96ACE}.Debug|x86.ActiveCfg = Debug|x86
+		{5A2DD707-F364-4F23-B74F-FC4FBDC96ACE}.Debug|x86.Build.0 = Debug|x86
+		{5A2DD707-F364-4F23-B74F-FC4FBDC96ACE}.Release|x86.ActiveCfg = Release|x86
+		{5A2DD707-F364-4F23-B74F-FC4FBDC96ACE}.Release|x86.Build.0 = Release|x86
+		{3EC1B128-68AC-41F6-9CB4-45CF7BC3FB91}.Debug|x86.ActiveCfg = Debug|x86
+		{3EC1B128-68AC-41F6-9CB4-45CF7BC3FB91}.Debug|x86.Build.0 = Debug|x86
+		{3EC1B128-68AC-41F6-9CB4-45CF7BC3FB91}.Release|x86.ActiveCfg = Release|x86
+		{3EC1B128-68AC-41F6-9CB4-45CF7BC3FB91}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

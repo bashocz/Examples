@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceHostBase", "WcfServiceHostBase\WcfServiceHostBase.csproj", "{C3415DD6-993D-4CFD-B371-2157B99C3D9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceCastle", "WcfServiceCastle\WcfServiceCastle.csproj", "{27ACE5AC-31E0-40A4-8FEC-118659258896}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceCastleFacilities", "WcfServiceCastleFacilities\WcfServiceCastleFacilities.csproj", "{433EC15C-8E66-4A24-A685-388847511EA8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3415DD6-993D-4CFD-B371-2157B99C3D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3415DD6-993D-4CFD-B371-2157B99C3D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3415DD6-993D-4CFD-B371-2157B99C3D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3415DD6-993D-4CFD-B371-2157B99C3D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27ACE5AC-31E0-40A4-8FEC-118659258896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27ACE5AC-31E0-40A4-8FEC-118659258896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27ACE5AC-31E0-40A4-8FEC-118659258896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27ACE5AC-31E0-40A4-8FEC-118659258896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{433EC15C-8E66-4A24-A685-388847511EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{433EC15C-8E66-4A24-A685-388847511EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{433EC15C-8E66-4A24-A685-388847511EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{433EC15C-8E66-4A24-A685-388847511EA8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Factory="WcfServiceCastle.MyServiceHostFactory" Service="WcfServiceCastle.MyServiceCastle" CodeBehind="MyServiceCastle.svc.cs" %>
