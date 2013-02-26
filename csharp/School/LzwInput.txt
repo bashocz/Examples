@@ -1,0 +1,263 @@
+CRYSTAL REPORTS FOR MICROSOFT VISUAL STUDIO 2005 LICENSE AGREEMENT
+
+IMPORTANT-READ CAREFULLY: THIS IS A LEGAL AGREEMENT BETWEEN YOU AND BUSINESS OBJECTS SOFTWARE LIMITED ("BUSINESS OBJECTS")
+FOR THE BUSINESS OBJECTS SOFTWARE PRODUCT IDENTIFIED ABOVE, WHICH MAY INCLUDE COMPUTER SOFTWARE, ASSOCIATED MEDIA, PRINTED
+MATERIALS AND ONLINE OR ELECTRONIC DOCUMENTATION ("SOFTWARE"). BEFORE CONTINUING WITH THE INSTALLATION OF THE SOFTWARE,
+YOU MUST READ, ACKNOWLEDGE AND ACCEPT THE TERMS AND CONDITIONS OF THE SOFTWARE LICENSE AGREEMENT THAT FOLLOWS ("AGREEMENT").
+IF YOU DO NOT ACCEPT THE TERMS AND CONDITIONS OF THE AGREEMENT, YOU MAY RETURN, WITHIN THIRTY (30) DAYS OF PURCHASE,
+THE SOFTWARE TO THE PLACE YOU OBTAINED IT FOR A FULL REFUND
+
+1. GRANT OF LICENSE. Business Objects grants you a nonexclusive and limited license to use the
+   Software solely for your internal business purposes and in accordance with the terms and
+   conditions of this License Agreement. The Software is licensed, not sold, to you. This Software
+   is bundled with Microsoft Visual Studio 2005  ("VS 2005") and is subject to the following OEM
+   license terms:  you may only use the Runtime Software in conjunction with VS 2005. Accessing data
+   that is not specifically created or used within the context of a VS 2005 application is in
+   violation of this license.  
+
+2. INSTALLATION AND USE. Your use of the Software is governed by the terms of this agreement. You
+   may also install the Software as is reasonably necessary for disaster recovery, emergency restart
+   and backup, including, but not limited to making copies for such purposes for use at one or more
+   disaster recovery sites. In order to exercise your rights to the Software under this License
+   Agreement you must activate your copy of the Software in the manner described during the launch
+   sequence.  Business Objects may control the number and type of licenses and the use of the
+   Software by key codes.
+
+3. USE, DEPLOYMENT AND DISTRIBUTION OF RUNTIME SOFTWARE.
+
+3.1 Definitions
+
+	3.1.1. "Access" means to connect to the Runtime Software either directly or indirectly
+		through any middle tier application(s). 
+
+	3.1.2. "Client Application" means an application developed by you that a) utilizes the
+		Runtime Software, b) is installed fully on an end user's machine, with all report
+		processing local to that machine, and c) adds significant and primary functionality
+		to the Runtime Software.  
+
+	3.1.3.  "Deployment" or "Deploy" means installing into production Server Applications on one
+		or more computers within your company or organization only in connection with your
+		internal business purposes.
+
+	3.1.4. "Distribution" or "Distribute" means selling, leasing, licensing or redistributing
+		Server Applications to third party end users external to your company or
+		organization. 
+
+	3.1.5. "Processor" means a single physical central processing unit or CPU.
+
+	3.1.6. "Project" means one or more Server Applications (a) providing the same or
+		substantially similar reports; (b) utilizing the same or a substantially similar
+		custom application interface; or (c) consisting of related modules or components. 
+
+	3.1.7. "Runtime Software" means the version specific files and application program
+		interfaces (APIs) specified in the CRYSTAL_RUNTIME2005.TXT file provided with the
+		Software.
+
+	3.1.8. "Server Application" means an application developed by you that a) utilizes the
+		Runtime Software, b) allows more than one user to access the Runtime Software either
+		directly or indirectly through any middle tier application(s), and c) adds
+		significant and primary functionality to the Runtime Software.  
+
+3.2 Use of the Runtime Software.  You may install and use a single copy of the Runtime
+    Software to develop Server Applications.  
+
+3.3 Deployment and Distribution of Client Applications. Business Objects grants you a personal,
+    nonexclusive, limited license to Deploy, reproduce and Distribute Client Applications to end
+    users, if you comply with all of the terms of this license agreement, including section 3.7.
+
+3.4 Deployment of Server Applications. After you have activated your copy of the Software, you may
+    Deploy multiple Server Applications within your organization provided that each Server
+    Application or Project may Access the Runtime Software on only one Processor. Under no
+    circumstances may you allow a Server Application or Project to Access the Runtime Software on
+    more than one Processor by combining additional Software licenses, other Business Objects'
+    products that include the Runtime Software, promotional offers of any kind, or by any other
+    means, unless you acquire additional Processor licenses for additional Runtime Software
+    scalability.  If you have acquired additional Processor licenses, the Runtime Software may be
+    installed and executed upon the number of Processors licensed.
+
+3.5 Distribution of Server Applications. This Agreement does not in itself give you any right to
+    Distribute Server Applications to third parties. If you want to distribute Server Applications
+    to third parties, you must obtain written authorization from Business Objects to do so.
+    Additional information is available at
+    http://www.businessobjects.com/products/reporting/crystalreports/licensing/default.asp.
+
+3.6 If you obtain written authorization from Business Objects to distribute Server Applications to
+    third parties, you may reproduce and distribute copies of Server Applications to end users of
+    Server Applications so long as you comply with all of the terms of this license agreement,
+    including section 3.6. 
+
+3.7 Runtime Software Distribution Requirements.  If you distribute the Runtime Software to third
+    parties pursuant to section 3.4, you agree to comply with the following requirements:
+
+	3.7.1. You distribute copies of the Runtime Software solely as a part of an application that
+	       adds specific and primary functionality to the Runtime Software;
+
+	3.7.2. You remain solely responsible for support, service, upgrades, and technical or other
+	       assistance, required or requested by anyone receiving such Runtime Software copies or
+               sample applications;
+
+	3.7.3. You do not use the name, logo, or trademark of Business Objects, or the Software,
+               without written permission from Business Objects;
+
+	3.7.4. You will defend, indemnify and hold Business Objects harmless against any claims or
+               liabilities arising out of the use, reproduction or distribution of Runtime Software;
+
+	3.7.5. You shall secure the end user's consent to terms substantially similar to the
+               following:
+
+	       End User agrees not to alter disassemble, decompile, translate, adapt or
+	       reverse-engineer the Runtime Software or the report file (.RPT) format;
+
+	       End User agrees not to distribute the Runtime Software with any general-purpose
+	       report writing, data analysis or report delivery product or any other product that
+	       performs the same or similar functions as Business Objects' product offerings;
+
+	       End User agrees not to use the Runtime Software to create for distribution a product
+	       that is generally competitive with Business Objects' product offerings;
+
+	       End User agrees not to use the Runtime Software to create for distribution a product
+	       that converts the report file (.RPT) format to an alternative report file format used
+	       by any general-purpose report writing, data analysis or report delivery product that
+	       is not the property of Business Objects;
+
+	       End User agrees not to use the Software on a rental or timesharing basis or to
+	       operate a service bureau facility for the benefit of third-parties;
+
+	       BUSINESS OBJECTS AND ITS SUPPLIERS DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED,
+	       INCLUDING WITHOUT LIMITATION THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+	       PARTICULAR PURPOSE, AND NONINFRINGEMENT OF THIRD PARTY RIGHTS. BUSINESS OBJECTS AND
+	       ITS SUPPLIERS SHALL HAVE NO LIABILITY WHATSOEVER UNDER THIS AGREEMENT OR IN
+ 	       CONNECTION WITH THE SOFTWARE. 
+
+4. OWNERSHIP.  Business Objects and/or its suppliers retain all right, title and interest in and to the Software and all
+   copies at all times, regardless of the form or media in or on which the original or other copies may subsequently exist.
+   You neither own nor hereby acquire any claim or right of ownership to the Software or to any related patents, copyrights,
+   trademarks or other intellectual property.  You agree to use reasonable efforts to prevent and protect the contents of the
+   Software from unauthorized disclosure or use. Business Objects and/or its suppliers reserve all rights not expressly
+   granted to you.  Business Objects' suppliers are the intended third party beneficiaries of this License Agreement and have
+   the express right to rely upon and directly enforce the terms set forth herein.  
+
+5. COPYRIGHT. The Software is copyrighted by Business Objects and/or its suppliers and is protected by United States
+   copyright and patent laws and international treaty provisions.  You may not copy the Software except:  (a) to provide a
+   backup copy; or (b) to install the Software components licensed by you, as set forth in Sections 2 and 3, on to computers
+   as part of executing the Software.  Solely with respect to the documentation included with the Software, you may make a
+   reasonable number of copies (either in hardcopy or electronic form), provided that such copies shall be used only by
+   licensed end users in conjunction with their use of the Software and are not republished or distributed to any third
+   party.  You must reproduce and include all copyright notices, trademarks or other proprietary legends of Business Objects
+   and its suppliers on any copy of the Software or documentation made by you.  Any and all other copies of the Software made
+   by you are in violation of this License Agreement. 
+
+6. RESTRICTIONS.  Except as expressly permitted by this License Agreement: (a) you may access the Software only in connection
+   with the processing and distribution to your employees, customers and business partners of: (i) your data, and (ii) any
+   third-party data you have a right to process and distribute; (b) you shall not use the Software on a timesharing basis or
+   to operate a service bureau facility for the benefit of third-parties; (c) you shall not modify or translate the Software
+   except as necessary to configure the Software using the menus, options and tools provided for such purposes and contained
+   in the Software; (d) you shall not in any way reverse engineer, disassemble or decompile the Software or any portion
+   thereof except to the extent and for the express purposes authorized by applicable law notwithstanding this limitation;
+   (e) you shall not sublicense, assign, rent, sell, lease, distribute or otherwise transfer the Software or any of the
+   rights granted by this License Agreement without the express written permission of Business Objects; (f) you shall not use
+   the Software to develop a product for distribution that is generally competitive with Business Objects' product offerings;
+   (g) you shall not use the Software or Runtime Software to develop a product that converts the report file (.RPT) format to
+   an alternative report file format used by any general-purpose report writing, data analysis or report delivery product
+   that is not the property of Business Objects; (h) you shall not alter, disassemble, decompile, translate, adapt, or
+   reverse-engineer the report file (.RPT) format; (i) you shall not use unauthorized keycodes to access additional Software
+   functionality or performance, (j) you shall not disclose any Software benchmark results to any third party without
+   Business Objects' prior written approval; and (k) you shall not distribute the Software or Runtime Software with any
+   general-purpose report writing, data analysis or report delivery product or any other product that performs the same or
+   similar functions Business Objects product offerings.  If you wish to develop and/or test an interface to the Software or
+   merge the Software with any other software, you shall inform Business Objects and Business Objects, at its option, may
+   provide you with information sufficient to enable interoperability between the Software and such other software or
+   products.
+ 
+7. LIMITED WARRANTY AND REMEDY.  
+
+	a)	Business Objects warrants to you that:  (i) for a period of thirty (30) days from delivery of the Software,
+	the Software will substantially conform to the functional description set forth in its associated documentation; and
+	(ii) for a period of thirty (30) days from delivery the physical media and physical documentation containing the
+	Software will be free from defects in materials and workmanship.  Any implied warranties on the Software and media
+	are limited to thirty (30) days from delivery, to the extent such warranties cannot be disclaimed under Section 8(c)
+	below.  The above warranties specifically exclude defects resulting from accident, abuse, unauthorized repair,
+	modifications, or enhancements, or misapplication.  Business Objects does not warrant that use of the Software will
+	be uninterrupted or error free.  Delivery of additional copies of, or revisions or upgrades to, the Software,
+	including releases provided under a maintenance program, shall not restart or otherwise affect the warranty period.
+
+	b)	Your exclusive remedy for breach of the above-stated limited warranty shall be, at Business Objects' option,
+	either:  (i) correction or replacement of the Software with product(s) which conform to the above-stated limited
+	warranty; or (ii) return of the price paid for the Software and termination of this License Agreement with respect to
+	those copies not in compliance.  Such remedy shall be provided to you by Business Objects only if you give Business
+	Objects written notice of any breach of the above-stated limited warranty, within thirty (30) days of delivery of the
+	Software.
+
+	c)	EXCEPT AS EXPRESSLY SET FORTH IN THIS SECTION 7, BUSINESS OBJECTS AND ITS SUPPLIERS AND DISTRIBUTORS MAKE NO
+	WARRANTIES, REPRESENTATIONS, CONDITIONS, OR GUARANTEES OF ANY KIND, EITHER EXPRESS, IMPLIED, STATUTORY, OR
+	OTHERWISE, ORAL OR WRITTEN, WITH RESPECT TO THE SOFTWARE AND ANY SERVICES FURNISHED IN CONNECTION WITH THE SOFTWARE,
+	INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR CONDITIONS:  (I) OF MERCHANTABILITY; (II) OF SATISFACTORY OR
+	MERCHANTABLE QUALITY; (III) OF FITNESS FOR A PARTICULAR PURPOSE; (IV) OF NONINFRINGEMENT; OR (V) ARISING FROM COURSE
+	OF PERFORMANCE, COURSE OF DEALING, OR USAGE OF TRADE.  SOME STATES/JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF
+	IMPLIED WARRANTIES, SO THE ABOVE EXCLUSION MAY NOT APPLY TO YOU, AND YOU MAY HAVE OTHER LEGAL RIGHTS THAT VARY FROM
+	STATE TO STATE OR BY JURISDICTION.
+
+8. LIMITATION OF LIABILITY.  TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL BUSINESS OBJECTS OR ITS 
+   OFFICERS, EMPLOYEES, DISTRIBUTORS, SUPPLIERS OR AFFILIATES BE LIABLE FOR:  (I) COSTS OF SUBSTITUTE GOODS OR SERVICES; (II)
+   SPECIAL, INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES OF ANY CHARACTER, WHETHER IN AN ACTION OF CONTRACT OR TORT, EVEN IF
+   BUSINESS OBJECTS HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES; (III) ANY CLAIM AGAINST YOU BY ANY THIRD PARTY; AND
+   (IV) ANY DAMAGES, LOSSES OR INJURIES TO YOU, OR THOSE CLAIMING THROUGH YOU, IN EXCESS OF THE FEES PAID BY YOU FOR THE
+   SOFTWARE OR SERVICES DIRECTLY CAUSING THE LIABILITY.  THESE LIMITATIONS WILL APPLY NOTWITHSTANDING ANY FAILURE OF
+   ESSENTIAL PURPOSE OF ANY LIMITED REMEDY.  THE FOREGOING ALLOCATION OF RISK IS REFLECTED IN THE FEES CHARGED UNDER THIS
+   LICENSE AGREEMENT.  SOME STATES/JURISDICTIONS DO NOT ALLOW THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR
+   CONSEQUENTIAL DAMAGES, SO THE ABOVE LIMITATION MAY NOT APPLY TO YOU.
+
+9. TERMINATION.  This Agreement is effective until terminated. You may terminate this License Agreement at any time by
+   providing Business Objects with written notice, provided that you have complied with the return and/or destruction policy
+   set forth below. If you ordered an Evaluation License for the Software that is time disabled, this Agreement will
+   automatically terminate after the Evaluation Period, and you agree not to avoid, or attempt to avoid, any applicable time
+   limitation. This Agreement may be terminated by Business Objects if: (i) you fail to pay the license fees and other
+   charges set forth at the time of your order; or (ii) you fail to comply with any of the terms and conditions set forth in
+   this Agreement and do not remedy such failure within thirty (30) days after receiving notice thereof. Upon any termination
+   of this Agreement, you agree to: (i) immediately cease all use of the Software, including the use and distribution of any
+   Custom Applications incorporating the Software; and (ii) either return the Software to Business Objects or destroy same,
+   and certify to Business Objects, in writing, that all copies and partial copies thereof have been returned or completely
+   destroyed and are no longer being used. Sections 5, 6, 7(c), 8, 9, 10, 11, 12, and 13 shall survive any termination of
+   this License Agreement. 
+
+10. AUDIT.  During the term of this Agreement and for three (3) years after termination or expiration, Business Objects may
+    audit, upon reasonable notice to you and at Business Objects' expense, your books and records to determine your
+    compliance with this Agreement.  In the event any such audit reveals that you have underpaid Business Objects by an
+    amount greater than five percent (5%) of the amounts due Business Objects in the period being audited, or that you have
+    knowingly breached any material obligation hereunder, then, in addition to such other remedies Business Objects may have,
+    you shall pay or reimburse Business Objects the cost of the audit.
+
+11. GENERAL.  Except as otherwise preempted by United States federal law, this Agreement is governed by the laws of the State
+    of California, United States, without reference to conflict of laws provisions or the United Nations 1980 Convention on
+    Contracts for the International Sale of Goods and any amendments thereto. If any provision of this Agreement is ruled
+    invalid, such invalidity shall not affect the validity of the remaining portions of this Agreement. This Agreement
+    constitutes the entire agreement between you and Business Objects, and supersedes any prior agreement, whether written or
+    oral, relating to the subject matter of this Agreement. This Agreement may not be modified except by an instrument in
+    writing duly signed by an authorized representative of each of the parties. If you are acquiring the Software on behalf
+    of an entity, you represent and warrant that you have the legal capacity to bind such entity to this Agreement. All terms
+    of any purchase order or other ordering document submitted by you shall be superseded by this License Agreement. In the
+    event you and Business Objects have executed a mutually agreed upon Master Software License Agreement ("MSLA") and
+    acquired the Software pursuant to such MSLA, the terms of the MSLA shall govern your use of the Software and the terms of
+    this Agreement shall be superseded by the MSLA. The product name for the Software is a trademark or registered trademark
+    of Business Objects. Should you have questions concerning this License Agreement, please contact your local Business
+    Objects sales office or authorized reseller, or write to: Business Objects Software Limited., Attn: Contracts Department,
+    3030 Orchard Parkway., San Jose, CA 95134.
+
+12. U.S. GOVERNMENT RESTRICTED RIGHTS.  The Software is a "commercial item," as that term is defined at 48 C.F.R. 2.101 (Oct.
+    1995), consisting of "commercial computer software" and "commercial computer software documentation," as such terms are
+    used in 48 C.F.R. 12.212 (Sept. 1995).  Consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4
+    (June 1995) (or an equivalent provision, e.g., in supplements of various U.S. government agencies, as applicable), all
+    U.S. Government users acquire the Software with only those rights set forth herein.  Manufacturer is Business Objects
+    Software Limited., 3030 Orchard Parkway, San Jose, CA 95134. 
+
+13. EXPORT CONTROLS.  You acknowledge that the Software is of U.S. origin.  You agree to comply with all applicable
+    international and national laws that apply to the Software, including the U.S. Export Administration Regulations, as well
+    as end-user, end-use and destination restrictions issued by U.S. and other governments. 
+
+14. ORDER TERMS. Purchase orders conforming to Business Objects  purchase order requirements may be accepted from qualified
+    companies. All pre-printed terms of any purchase order shall have no effect. Payment terms are net-30 days from date of
+    invoice. FOB Business Objects facility.  Business Objects specifically disclaims price guarantees of any kind. You are
+    responsible for payment of all applicable sales, use, consumption, VAT, GST, and other taxes and all applicable export
+    and import fees, custom duties and similar charges, excluding taxes based on Business Objects net income.
+
+

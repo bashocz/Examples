@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <Ukol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Datum>2008-12-01T10:54:00</Datum>
+    <Dulezity>true</Dulezity>
+    <Upozorneni>false</Upozorneni>
+    <Text>Odpocet zacne za 3min</Text>
+  </Ukol>
+  <Ukol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Datum>2008-12-01T10:57:00</Datum>
+    <Dulezity>false</Dulezity>
+    <Upozorneni>false</Upozorneni>
+    <Text>Uz to zacalo</Text>
+  </Ukol>
+  <Ukol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Datum>2008-12-01T10:58:00</Datum>
+    <Dulezity>true</Dulezity>
+    <Upozorneni>false</Upozorneni>
+    <Text>3,2,1 BUM!</Text>
+  </Ukol>
+</root>
