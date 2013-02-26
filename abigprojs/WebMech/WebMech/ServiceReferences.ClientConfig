@@ -1,0 +1,32 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IWebMechService"
+                         closeTimeout="00:30:00"
+                         openTimeout="00:30:00"
+                         receiveTimeout="00:30:00"
+                         sendTimeout="00:30:00"
+                         maxBufferSize="2147483647"
+                         maxReceivedMessageSize="2147483647">
+                    <security mode="None">
+                        <transport>
+                            <extendedProtectionPolicy policyEnforcement="Never" />
+                        </transport>
+                    </security>
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+          <!-- Connection string to my instance of SQL server on my own computer -->
+          <endpoint address="http://localhost:50577/WcfService/WebMechService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IWebMechService"
+                contract="WebMechService.IWebMechService" name="BasicHttpBinding_Localhost" />
+          <!-- Connection string to instance of SQL server on vsb-fei-ki's virtual machine -->
+          <!-- It is temporary intalation and final should be different -->
+          <!--<endpoint address="http://158.196.141.55/WcfService/WebMechService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IWebMechService"
+                contract="WebMechService.IWebMechService" name="BasicHttpBinding_Localhost" />-->
+        </client>
+    </system.serviceModel>
+</configuration>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="WebMech">
+  <DataContextMoniker Name="/WebMechDataContext" />
+  <nestedChildShapes>
+    <classShape Id="a4718e45-a6f7-49bf-9caf-f7ea83d14557" absoluteBounds="0.5, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/WebMechDataContext/Surface" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fd0718ab-5dd7-411a-9c27-d3ef063cc223" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="96147023-98bf-4e98-aade-9af452495749" absoluteBounds="3.375, 0.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/WebMechDataContext/Sample" />
+      <nestedChildShapes>
+        <elementListCompartment Id="50fdd886-f721-4acc-a674-88413fe83ea7" absoluteBounds="3.3899999999999997, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 1.28929768880208); (3.375 : 1.28929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/WebMechDataContext/Surface/Surface_Sample" />
+      <nodes>
+        <classShapeMoniker Id="a4718e45-a6f7-49bf-9caf-f7ea83d14557" />
+        <classShapeMoniker Id="96147023-98bf-4e98-aade-9af452495749" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="3e76a7be-f772-45ea-9b31-11ff75f1e0c0" absoluteBounds="0.5, 2.625, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/WebMechDataContext/Point" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e56005c7-8e2b-4b48-9eb6-e04a58aa01c1" absoluteBounds="0.51500000000000012, 3.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.21875 : 2.4631982421875); (5.21875 : 2.96875); (4.27083333333333 : 2.96875 : JumpStart); (4.10416666666667 : 2.96875 : JumpEnd); (2.5 : 2.96875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/WebMechDataContext/Sample/Sample_Point" />
+      <nodes>
+        <classShapeMoniker Id="96147023-98bf-4e98-aade-9af452495749" />
+        <classShapeMoniker Id="3e76a7be-f772-45ea-9b31-11ff75f1e0c0" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="bf7ea3e5-4080-4ff4-bbf0-44ab09f6fd18" absoluteBounds="3, 3.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/WebMechDataContext/Parameter" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ee57252d-817b-4093-a14d-7f3d8ccafd7a" absoluteBounds="3.0149999999999997, 3.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.1875 : 2.4631982421875); (4.1875 : 3.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/WebMechDataContext/Sample/Sample_Parameter" />
+      <nodes>
+        <classShapeMoniker Id="96147023-98bf-4e98-aade-9af452495749" />
+        <classShapeMoniker Id="bf7ea3e5-4080-4ff4-bbf0-44ab09f6fd18" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="e64ae97f-01dc-481d-abf8-47c48ed19243" absoluteBounds="5.625, 2.75, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/WebMechDataContext/Statistic" />
+      <nestedChildShapes>
+        <elementListCompartment Id="38240ae3-111d-4993-ba1d-ee43c699fcd5" absoluteBounds="5.64, 3.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.375 : 2.4631982421875); (5.625 : 2.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/WebMechDataContext/Sample/Sample_Statistic" />
+      <nodes>
+        <classShapeMoniker Id="96147023-98bf-4e98-aade-9af452495749" />
+        <classShapeMoniker Id="e64ae97f-01dc-481d-abf8-47c48ed19243" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

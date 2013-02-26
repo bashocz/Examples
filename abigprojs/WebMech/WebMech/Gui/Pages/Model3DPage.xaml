@@ -1,0 +1,21 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="WebMech.Model3DPage"
+	xmlns:local="clr-namespace:WebMech"
+	d:DesignWidth="353" d:DesignHeight="432" Loaded="UserControl_Loaded">
+	
+	<Grid x:Name="LayoutRoot">
+		<Grid x:Name="viewport">
+			<Grid Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Margin="0,8,8,0">
+				<Button x:Name="btnSurfaceUp" Height="22" HorizontalAlignment="Center" VerticalAlignment="Top" Width="22" Content="^" Click="btnSurfaceUp_Click" Margin="0"/>
+				<Button x:Name="btnSurfaceLeft" Height="22" HorizontalAlignment="Left" Width="22" Content="&lt;" VerticalAlignment="Center" Click="btnSurfaceLeft_Click"/>
+				<Button x:Name="btnSurfaceRight" Height="22" HorizontalAlignment="Right" Width="22" Content="&gt;" VerticalAlignment="Center" Click="btnSurfaceRight_Click"/>
+				<Button x:Name="btnSurfaceDown" Height="22" HorizontalAlignment="Center" Width="22" Content="v" VerticalAlignment="Bottom" Click="btnSurfaceDown_Click"/>
+			</Grid>
+		</Grid>
+	</Grid>
+</UserControl>

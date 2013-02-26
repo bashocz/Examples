@@ -1,0 +1,39 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:WebMech"
+	mc:Ignorable="d"
+	xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+	x:Class="WebMech.HistogramPage"
+	d:DesignWidth="762" d:DesignHeight="432" Loaded="UserControl_Loaded">
+	
+	<Grid x:Name="LayoutRoot">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="200"/>
+		</Grid.ColumnDefinitions>
+		<chartingToolkit:Chart x:Name="chartHistogram" Title="Histogram" BorderThickness="0">
+			<chartingToolkit:Chart.DataContext>
+				<PointCollection>
+					<Point>1,10</Point>
+					<Point>2,20</Point>
+					<Point>3,30</Point>
+					<Point>4,40</Point>
+				</PointCollection>
+			</chartingToolkit:Chart.DataContext>
+			<chartingToolkit:ColumnSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding}" Title=""/>
+		</chartingToolkit:Chart>
+		<ListBox x:Name="lbParameter" Grid.Column="1" BorderBrush="{StaticResource Border}" Margin="0,32,8,0" ItemContainerStyle="{StaticResource WebMechListBoxItem}" SelectionChanged="lbParameter_SelectionChanged">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid Margin="0" d:DesignWidth="239" d:DesignHeight="39">
+						<TextBlock Margin="4,1" Text="{Binding Name, Mode=OneWay}" Foreground="{StaticResource ListBoxItemForeground}"/>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<TextBlock HorizontalAlignment="Left" Text="Výběr parametru" TextWrapping="Wrap" Foreground="{StaticResource LabelForeground}" FontSize="13" FontWeight="Bold" VerticalAlignment="Top" Grid.Column="1" Margin="0,8,0,0"/>
+	</Grid>
+</UserControl>

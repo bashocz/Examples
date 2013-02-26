@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:tns="http://tempuri.org/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" name="WebMechService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:50577/WcfService/WebMechService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:50577/WcfService/WebMechService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:50577/WcfService/WebMechService.svc?xsd=xsd2" namespace="http:\WebMech.Web" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IWebMechService_AddSurface_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSurface" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_AddSurface_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSurfaceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_ModifySurface_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifySurface" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_ModifySurface_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifySurfaceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_DeleteSurface_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSurface" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_DeleteSurface_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSurfaceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSurfaceById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurfaceById" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSurfaceById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurfaceByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSurfaceByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurfaceByName" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSurfaceByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurfaceByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSurfaceListPageInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurfaceListPageInfo" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSurfaceListPageInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurfaceListPageInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSurfaceList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurfaceList" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSurfaceList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurfaceListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_UploadSample_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadSample" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_UploadSample_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadSampleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_ModifySample_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifySample" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_ModifySample_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifySampleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_DeleteSample_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSample" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_DeleteSample_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSampleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSampleListPageInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSampleListPageInfo" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSampleListPageInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSampleListPageInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSampleList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSampleList" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSampleList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSampleListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSample_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSample" />
+  </wsdl:message>
+  <wsdl:message name="IWebMechService_GetSample_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSampleResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IWebMechService">
+    <wsdl:operation name="AddSurface">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSurface/AddSurface" message="tns:IWebMechService_AddSurface_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSurface/AddSurfaceResponse" message="tns:IWebMechService_AddSurface_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifySurface">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSurface/ModifySurface" message="tns:IWebMechService_ModifySurface_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSurface/ModifySurfaceResponse" message="tns:IWebMechService_ModifySurface_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSurface">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSurface/DeleteSurface" message="tns:IWebMechService_DeleteSurface_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSurface/DeleteSurfaceResponse" message="tns:IWebMechService_DeleteSurface_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurfaceById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSurface/GetSurfaceById" message="tns:IWebMechService_GetSurfaceById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSurface/GetSurfaceByIdResponse" message="tns:IWebMechService_GetSurfaceById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurfaceByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSurface/GetSurfaceByName" message="tns:IWebMechService_GetSurfaceByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSurface/GetSurfaceByNameResponse" message="tns:IWebMechService_GetSurfaceByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurfaceListPageInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSurface/GetSurfaceListPageInfo" message="tns:IWebMechService_GetSurfaceListPageInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSurface/GetSurfaceListPageInfoResponse" message="tns:IWebMechService_GetSurfaceListPageInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurfaceList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSurface/GetSurfaceList" message="tns:IWebMechService_GetSurfaceList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSurface/GetSurfaceListResponse" message="tns:IWebMechService_GetSurfaceList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadSample">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSample/UploadSample" message="tns:IWebMechService_UploadSample_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSample/UploadSampleResponse" message="tns:IWebMechService_UploadSample_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifySample">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSample/ModifySample" message="tns:IWebMechService_ModifySample_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSample/ModifySampleResponse" message="tns:IWebMechService_ModifySample_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSample">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSample/DeleteSample" message="tns:IWebMechService_DeleteSample_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSample/DeleteSampleResponse" message="tns:IWebMechService_DeleteSample_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSampleListPageInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSample/GetSampleListPageInfo" message="tns:IWebMechService_GetSampleListPageInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSample/GetSampleListPageInfoResponse" message="tns:IWebMechService_GetSampleListPageInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSampleList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSample/GetSampleList" message="tns:IWebMechService_GetSampleList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSample/GetSampleListResponse" message="tns:IWebMechService_GetSampleList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSample">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebMechSample/GetSample" message="tns:IWebMechService_GetSample_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebMechSample/GetSampleResponse" message="tns:IWebMechService_GetSample_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IWebMechService" type="tns:IWebMechService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddSurface">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSurface/AddSurface" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifySurface">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSurface/ModifySurface" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSurface">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSurface/DeleteSurface" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurfaceById">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSurface/GetSurfaceById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurfaceByName">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSurface/GetSurfaceByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurfaceListPageInfo">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSurface/GetSurfaceListPageInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurfaceList">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSurface/GetSurfaceList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadSample">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSample/UploadSample" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifySample">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSample/ModifySample" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSample">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSample/DeleteSample" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSampleListPageInfo">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSample/GetSampleListPageInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSampleList">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSample/GetSampleList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSample">
+      <soap:operation soapAction="http://tempuri.org/IWebMechSample/GetSample" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebMechService">
+    <wsdl:port name="BasicHttpBinding_IWebMechService" binding="tns:BasicHttpBinding_IWebMechService">
+      <soap:address location="http://localhost:50577/WcfService/WebMechService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

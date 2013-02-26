@@ -1,0 +1,14 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:WebMech"
+	mc:Ignorable="d"
+	x:Class="WebMech.SamplePage"
+	d:DesignWidth="353" d:DesignHeight="432">
+    
+	<Grid x:Name="LayoutRoot">
+		<Image x:Name="imgSample" Source="{Binding SelectedSample.FileName, Mode=OneWay}"/>
+	</Grid>
+</UserControl>

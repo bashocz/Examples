@@ -1,0 +1,27 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	x:Class="WebMech.NewSurfaceDialog"
+    mc:Ignorable="d">
+    <Grid x:Name="dlgHiddenBackground">
+        <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{StaticResource DialogOutsideBackground}" Margin="0"/>
+        <Border CornerRadius="10" Width="350" Background="{StaticResource BallonBackground}" BorderBrush="{StaticResource Border}" BorderThickness="1" Height="200">
+        	<Grid>
+        		<Grid.RowDefinitions>
+        			<RowDefinition/>
+        			<RowDefinition Height="44"/>
+        		</Grid.RowDefinitions>
+        		<TextBlock RenderTransformOrigin="0.741,2.125" Foreground="{StaticResource LabelForeground}" Text="Vytvoření nového povrchu" TextWrapping="Wrap" Margin="16,8,0,0" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        		<TextBlock HorizontalAlignment="Left" Margin="16,48,0,0" VerticalAlignment="Top" Foreground="{StaticResource LabelForeground}" Text="Název povrchu" TextWrapping="Wrap"/>
+        		<TextBox BorderBrush="{StaticResource Border}" Foreground="{StaticResource LabelForeground}" Margin="16,64,16,0" VerticalAlignment="Top" TextWrapping="Wrap" d:LayoutOverrides="Height" Text="{Binding Name, Mode=TwoWay, ValidatesOnExceptions=true}"/>
+        		<TextBlock x:Name="lblError" HorizontalAlignment="Left" VerticalAlignment="Top" Text="Název povrchu musí být vyplněn" TextWrapping="Wrap" Margin="16,96,0,0" Foreground="{StaticResource ErrorLabelForeground}" Visibility="Collapsed"/>
+        		<StackPanel Margin="0" Grid.ColumnSpan="2" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        			<Button x:Name="btnOk" Content="Ok" Style="{StaticResource GlassButton}" Background="{StaticResource ButtonBackground}" Margin="10,0,0,0" Width="96" Click="btnOk_Click" Foreground="{StaticResource GlassButtonForeground}" Height="28" HorizontalAlignment="Left"/>
+        			<Button x:Name="btnCancel" Content="Storno" Style="{StaticResource GlassButton}" Background="{StaticResource ButtonBackground}" Margin="10,0,0,0" Width="96" Click="btnCancel_Click" Foreground="{StaticResource GlassButtonForeground}" Height="28" HorizontalAlignment="Left"/>
+        		</StackPanel>
+        	</Grid>
+        </Border>
+    </Grid>
+</UserControl>

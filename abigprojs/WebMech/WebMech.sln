@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMech", "WebMech\WebMech.csproj", "{F67EE6C2-453D-40A0-B548-F649A1A2040C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{55544C4D-CE43-4956-8D16-ADE521DBE9FA} = {55544C4D-CE43-4956-8D16-ADE521DBE9FA}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMech.Web", "WebMech.Web\WebMech.Web.csproj", "{55544C4D-CE43-4956-8D16-ADE521DBE9FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F67EE6C2-453D-40A0-B548-F649A1A2040C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F67EE6C2-453D-40A0-B548-F649A1A2040C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F67EE6C2-453D-40A0-B548-F649A1A2040C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F67EE6C2-453D-40A0-B548-F649A1A2040C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55544C4D-CE43-4956-8D16-ADE521DBE9FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55544C4D-CE43-4956-8D16-ADE521DBE9FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55544C4D-CE43-4956-8D16-ADE521DBE9FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55544C4D-CE43-4956-8D16-ADE521DBE9FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
