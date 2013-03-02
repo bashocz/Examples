@@ -1,0 +1,346 @@
+初版
+
+XmlTool 是為了解決以下問題而產生出來的,
+問題有
+    1. Delphi 的 TXmlDocument 程式處理方式太複雜了, 要讀寫一個 XML 的值, 卻要寫一堆程式才能達成, 
+       希望能讓讀寫 XML 的工作變簡單
+    2. 使讀寫 XML 的方式由立體變為平面
+    3. 要能支援 XPath 的能力
+
+所以, 我規劃了ㄧ個架構於 TXmlDocument 的操作元件, 命名為 XmlTool.
+
+TXmlTool 支援以下功能(特徵):
+    1. 可解析 XPath
+    2. 自動建造 XPath 的相關 Nodes
+    3. 具有 Exception 忽略能力
+    4. 以 XmlDom 為存取基礎, 不會影響原有的 XML 運作.
+    
+由於本程式採用高度容錯的角度撰寫, 所以使用上很簡單, 但是若是有一些資料操作的錯誤, 將會不易察覺.
+
+程式範例與比較:
+
+    範例(test.xml):
+            
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Family>
+	<Father>Bill Gates</Father>
+	<Mother>Lin Chiling</Mother>
+	<My Name="Mouse" Age="25">
+		<Wife Age="23">Cat</Wife>
+		<Child Age="1">Mouse II</Child>
+		<Child Age="15">Mickey Mouse</Child>
+		<Child Age="14">Donald Duck</Child>
+	</My>
+	<Uncle Age="35" Sex="Male">
+	    <Wife>Jolin</Wife>
+	</Uncle>
+</Family>
+
+功能簡述:
+    1. XPath 的方法:
+        我沒有去研究 XPath 從何而來, 但是因為看到了 XPath 滿好用的, 所以就把它加進了我的程式裡,
+        XPath 就是可以以平面路徑的方式指定 XML 的節點(Node), 例如要讀取 "Father" 節點, 
+        只要用 "/Family/Father" 這樣的 XPath 對應即可
+        如果是要讀取屬性 "Attribute", 例如要讀取 "Age" 屬性, 
+        只要用 "/Family/My/@Age" 這樣的 XPath 就可對應,
+        如果要讀取的節點有很多個同名的(像是records), 例如要讀取第二個 "Child" 節點, 
+        只要用 "/Family/My/Child[1]" 這樣的 XPath 就可對應(索引值是從零開始).
+    2. 我自行加入的 XPath 簡易路徑記憶法:
+        XPath 是好用, 但是一但路徑長了就有點麻煩, 而且程式不易攜帶...
+        所以, 加入了"簡易路徑記憶法"(隨便命名的), 只要在 XPath 使用時, 將要記憶的路徑以 "//" 
+        加入於 XPath 中即可, 例如, 有一堆節點是在某一節點下, 像是 "My" 節點的下面一堆, 則可以
+        這樣用, 先下 XPath 指令 "/Family/My//", 之後以下的 XPath 自動會跟隨在 "/Family/My" 下.
+        但是這些 XPath 不能以 "/" 為開頭, 不然會被視為從根節點開始, 就是變成為絕對路徑.
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+要寫入XML檔案時:
+
+原本用 XmlDocument 的程式方式:
+
+var
+  XD: IXMLDocument;
+begin
+  XD := NewXMLDocument;
+  try
+    XD.StandAlone := 'yes';
+    XD.Encoding := 'UTF-8';
+    XD.Options := [doNodeAutoIndent];
+    XD.NodeIndentStr := #9;
+
+    with XD.AddChild('Family') do
+    begin
+      AddChild('Father').NodeValue := 'Bill Gates';
+      AddChild('Mother').NodeValue := 'Lin Chiling';
+      with AddChild('My') do
+      begin
+        Attributes['Name'] := 'Mouse';
+        Attributes['Age'] := 25;
+        with AddChild('Wife') do
+        begin
+          NodeValue := 'Cat';
+          Attributes['Age'] := 23;
+        end;
+        with AddChild('Child') do
+        begin
+          NodeValue := 'Mouse II';
+          Attributes['Age'] := 1;
+        end;
+        with AddChild('Child') do
+        begin
+          NodeValue := 'Mickey Mouse';
+          Attributes['Age'] := 15;
+        end;
+        with AddChild('Child') do
+        begin
+          NodeValue := 'Donald Duck';
+          Attributes['Age'] := 14;
+        end;
+      end;
+      with AddChild('Uncle') do
+      begin
+        Attributes['Age'] := 35;
+        Attributes['Sex'] := 'Male';
+        AddChild('Wife').NodeValue := 'Jolin';
+      end;
+    end;
+    XD.SaveToFile('C:\Test.xml');
+  finally
+    XD := nil;
+  end;
+end;
+
+當改用 XmlTool 的程式方式(這個方式是一目暸然, 直覺化的程式碼):
+
+var
+  XT: TXmlTool;
+begin
+  XT := TXmlTool.Create;
+  try
+    XT['/Family/Father'] := 'Bill Gates';
+    XT['/Family/Mother'] := 'Lin Chiling';
+    XT['/Family/My/@Name'] := 'Mouse';
+    XT['/Family/My/@Age'] := 25;
+    XT['/Family/My/Wife'] := 'Cat';
+    XT['/Family/My/Wife/@Age'] := 23;
+    XT['/Family/My/Child'] := 'Mouse II';
+    XT['/Family/My/Child/@Age'] := 1;
+    XT['/Family/My/Child[1]'] := 'Mickey Mouse';
+    XT['/Family/My/Child[1]/@Age'] := 15;
+    XT['/Family/My/Child[2]'] := 'Donald Duck';
+    XT['/Family/My/Child[2]/@Age'] := 14;
+    XT['/Family/Uncle/@Age'] := 35;
+    XT['/Family/Uncle/@Sex'] := 'Male';
+    XT['/Family/Uncle/Wife'] := 'Jolin';
+    
+    XT.SaveToFile('C:\Test.xml');
+  finally
+    XT.Free;
+  end;
+end;
+
+或是可以這樣寫(這個方式是方便程式撰寫, 不用去重寫一堆路徑)...
+
+var
+  XT: TXmlTool;
+begin
+  XT := TXmlTool.Create;
+  try
+    XT['/Family//'];
+    XT['Father'] := 'Bill Gates';
+    XT['Mother'] := 'Lin Chiling';
+    XT['My//'];
+    XT['@Name'] := 'Mouse';
+    XT['@Age'] := 25;
+    XT['Wife'] := 'Cat';
+    XT['Wife/@Age'] := 23;
+    XT['Child'] := 'Mouse II';
+    XT['Child/@Age'] := 1;
+    XT['Child[1]'] := 'Mickey Mouse';
+    XT['Child[1]/@Age'] := 15;
+    XT['Child[2]'] := 'Donald Duck';
+    XT['Child[2]/@Age'] := 14;
+    XT['..//'];
+    XT['Uncle/@Age'] := 35;
+    XT['Uncle/@Sex'] := 'Male';
+    XT['Uncle/Wife'] := 'Jolin';
+    
+    XT.SaveToFile('C:\Test.xml');
+  finally
+    XT.Free;
+  end;
+end;
+
+更可以這樣下指令(精簡程式)...
+
+var
+  XT: TXmlTool;
+begin
+  XT := TXmlTool.Create;
+  try
+    XT['/Family//Father'] := 'Bill Gates';
+    XT['Mother'] := 'Lin Chiling';
+    XT['My//@Name/'] := 'Mouse';
+    XT['@Age'] := 25;
+    XT['Wife//'] := 'Cat';
+    XT['@Age'] := 23;
+    XT['../Child//'] := 'Mouse II';
+    XT['@Age'] := 1;
+    XT['../Child[1]//'] := 'Mickey Mouse';
+    XT['@Age'] := 15;
+    XT['../Child[2]//'] := 'Donald Duck';
+    XT['@Age'] := 14;
+    XT['../../Uncle//@Age'] := 35;
+    XT['@Sex'] := 'Male';
+    XT['Wife'] := 'Jolin';
+    
+    XT.SaveToFile('C:\Test.xml');
+  finally
+    XT.Free;
+  end;
+end;
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+要讀取全部的值時:
+
+原本用 XmlDocument 的程式方式:
+
+var
+  XD: IXMLDocument;
+  i: Integer;
+begin
+  XD := LoadXMLDocument('C:\Test.xml');
+  try
+    ShowMessage(XD.ChildNodes['Family'].ChildValues['Father']);
+    ShowMessage(XD.ChildNodes['Family'].ChildValues['Mother']);
+    ShowMessage(XD.ChildNodes['Family'].ChildNodes['My'].Attributes['Name']);
+    ShowMessage(XD.ChildNodes['Family'].ChildNodes['My'].Attributes['Age']);
+    ShowMessage(XD.ChildNodes['Family'].ChildNodes['My'].ChildValues['Wife']);
+    ShowMessage(XD.ChildNodes['Family'].ChildNodes['My'].ChildNodes['Wife'].Attributes['Age']);
+    for i := 0 to XD.ChildNodes['Family'].ChildNodes['My'].ChildNodes.Count-1 do
+      if XD.ChildNodes['Family'].ChildNodes['My'].ChildNodes[i].NodeName = 'Child' then
+      begin
+        ShowMessage(XD.ChildNodes['Family'].ChildNodes['My'].ChildNodes[i].NodeValue);
+        ShowMessage(XD.ChildNodes['Family'].ChildNodes['My'].ChildNodes[i].Attributes['Age']);
+      end;
+    ShowMessage(XD.ChildNodes['Family'].ChildNodes['Uncle'].Attributes['Age']);
+    ShowMessage(XD.ChildNodes['Family'].ChildNodes['Uncle'].Attributes['Sex']);
+    ShowMessage(XD.ChildNodes['Family'].ChildNodes['Uncle'].ChildValues['Wife']);
+  finally
+    XD := nil;
+  end;
+end;
+
+當改用 XmlTool 的程式方式(這個方式是一目暸然, 直覺化的程式碼):
+
+var
+  XT: TXmlTool;
+begin
+  XT := TXmlTool.Create('C:\Test.xml');
+  try
+    ShowMessage(XT['/Family/Father']);
+    ShowMessage(XT['/Family/Mother']);
+    ShowMessage(XT['/Family/My/@Name']);
+    ShowMessage(XT['/Family/My/@Age']);
+    ShowMessage(XT['/Family/My/Wife']);
+    ShowMessage(XT['/Family/My/Wife/@Age']);
+    ShowMessage(XT['/Family/My/Child']);
+    ShowMessage(XT['/Family/My/Child/@Age']);
+    ShowMessage(XT['/Family/My/Child[1]']);
+    ShowMessage(XT['/Family/My/Child[1]/@Age']);
+    ShowMessage(XT['/Family/My/Child[2]']);
+    ShowMessage(XT['/Family/My/Child[2]/@Age']);
+    ShowMessage(XT['/Family/Uncle/@Age']);
+    ShowMessage(XT['/Family/Uncle/@Sex']);
+    ShowMessage(XT['/Family/Uncle/Wife']);
+
+    XT.SaveToFile('C:\Test.xml');
+  finally
+    XT.Free;
+  end;
+end;
+
+或是可以這樣寫(這個方式是方便程式撰寫, 不用去重寫一堆路徑)...
+
+var
+  XT: TXmlTool;
+begin
+  XT := TXmlTool.Create('C:\Test.xml');
+  try
+    XT['/Family//'];
+    ShowMessage(XT['Father']);
+    ShowMessage(XT['Mother']);
+    XT['My//'];
+    ShowMessage(XT['@Name']);
+    ShowMessage(XT['@Age']);
+    ShowMessage(XT['Wife']);
+    ShowMessage(XT['Wife/@Age']);
+    ShowMessage(XT['Child']);
+    ShowMessage(XT['Child/@Age']);
+    ShowMessage(XT['Child[1]']);
+    ShowMessage(XT['Child[1]/@Age']);
+    ShowMessage(XT['Child[2]']);
+    ShowMessage(XT['Child[2]/@Age']);
+    XT['..//'];
+    ShowMessage(XT['Uncle/@Age']);
+    ShowMessage(XT['Uncle/@Sex']);
+    ShowMessage(XT['Uncle/Wife']);
+  finally
+    XT.Free;
+  end;
+end;
+
+更可以這樣下指令(精簡程式)...
+
+var
+  XT: TXmlTool;
+begin
+  XT := TXmlTool.Create('C:\Test.xml');
+  try
+    ShowMessage(XT['/Family//Father']);
+    ShowMessage(XT['Mother']);
+    ShowMessage(XT['My//@Name/']);
+    ShowMessage(XT['@Age']);
+    ShowMessage(XT['Wife//']);
+    ShowMessage(XT['@Age']);
+    ShowMessage(XT['../Child//']);
+    ShowMessage(XT['@Age']);
+    ShowMessage(XT['../Child[1]//']);
+    ShowMessage(XT['@Age']);
+    ShowMessage(XT['../Child[2]//']);
+    ShowMessage(XT['@Age']);
+    ShowMessage(XT['../../Uncle//@Age']);
+    ShowMessage(XT['@Sex']);
+    ShowMessage(XT['Wife']);
+  finally
+    XT.Free;
+  end;
+end;
+
+如果要分析未知數量的節點, 就用這樣的下法...
+
+var
+  XT: TXmlTool;
+begin
+  XT := TXmlTool.Create('C:\Test.xml');
+  try
+    ShowMessage(XT['/Family//Father']);
+    ShowMessage(XT['Mother']);
+    if XT.SubNodes['My/'].First then
+      repeat
+        ShowMessage(XT.SubNodes['My/'].NodeXPath + '=' + XT.SubNodes['My/'].NodeValue);
+        if XT.SubNodes['My/'].SubNodes.First then
+          repeat
+            ShowMessage(XT.SubNodes['My/'].NodeXPath + '=' + XT.SubNodes['My/'].SubNodes.NodeValue);
+          until not XT.SubNodes['My/'].SubNodes.Next;
+      until not XT.SubNodes['My/'].Next;
+    ShowMessage(XT['Uncle//@Age']);
+    ShowMessage(XT['@Sex']);
+    ShowMessage(XT['Wife']);
+  finally
+    XT.Free;
+  end;
+end;

@@ -1,0 +1,11 @@
+<hlavni>
+  <prvni>
+    <prvek0 text="pokus" integer="123" double="1.23e123">nejaka node hodnota</prvek0>
+  </prvni>
+  <druhy>
+    <prvek0 text="pokus" integer="123" double="1.23e123">nejaka node hodnota</prvek0>
+  </druhy>
+  <treti>
+    <prvek0 text="pokus" integer="123" double="1.23e123">nejaka node hodnota</prvek0>
+  </treti>
+</hlavni>

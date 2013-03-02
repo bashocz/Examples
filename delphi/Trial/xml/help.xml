@@ -1,0 +1,9 @@
+<students>
+  <student name="John Smith">
+    <grade>incomplete</grade>
+  </student>
+  <student name="Jane Doe">
+    <grade>B+</grade>
+  </student>
+  <auditor name="Bill Jones"/>
+</students>

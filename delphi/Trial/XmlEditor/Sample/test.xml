@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Family>
+	<Father>Bill Gates</Father>
+	<Mother>Lin Chiling</Mother>
+	<My Name="Mouse" Age="25">
+		<Wife Age="23">Cat</Wife>
+		<Child Age="1">Mouse II</Child>
+		<Child Age="15">Mickey Mouse</Child>
+		<Child Age="14">Donald Duck</Child>
+	</My>
+	<Uncle Age="35" Sex="Male">
+		<Wife>Jolin</Wife>
+	</Uncle>
+</Family>
